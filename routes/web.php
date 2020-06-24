@@ -13,17 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'WelcomeController@admin')->name('admin');
+Route::get('/admin/login', 'WelcomeController@showAdminlogin')->name('admin.login');
+
+ Route::get('/', 'WelcomeController@index')->name('welcome');
+
 
 // superadmin Routes
 Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superadmin','auth'],'namespace'=>'superadmin'],function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::group(['prefix' => 'catelog'], function () {
+        Route::resource('product', 'ProductController');
+        Route::resource('category', 'CategoryController');
+        Route::resource('review', 'ReviewController');
+    });
+    Route::group(['prefix' => 'order'], function () {
+        Route::resource('order', 'OrderController');
+
+    });
+
+    Route::group(['prefix' => 'auth'], function () {
+        Route::resource('user', 'UserController');
+
+    });
+
+    Route::group(['prefix' => 'system'], function () {
+        Route::resource('setting', 'SettingController');
+
+    });
+
 });
 
 // Admin Routes

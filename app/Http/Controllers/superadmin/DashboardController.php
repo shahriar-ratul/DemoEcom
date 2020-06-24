@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class DashboardController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        // toastr()->success('Data has been saved successfully!');
+        // toastr()->info('Are you the 6 fingered man?');
+        return view('backend.superadmin.home');
     }
 
     /**
