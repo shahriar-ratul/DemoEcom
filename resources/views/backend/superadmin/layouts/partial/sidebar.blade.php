@@ -1,16 +1,16 @@
-<!--begin::Aside-->
+{{--  <!--begin::Aside-->  --}}
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
-<!--begin::Brand-->
+{{--  <!--begin::Brand-->  --}}
 <div class="brand flex-column-auto" id="kt_brand">
-<!--begin::Logo-->
+{{--  <!--begin::Logo-->  --}}
 <a href="{{ route('superadmin.dashboard') }}" class="brand-logo">
 <img alt="Logo" src="{{ asset('resource/logo/') }}/logo.png"  style="width:175px;height:60px"/>
 </a>
-<!--end::Logo-->
-<!--begin::Toggle-->
+{{--  <!--end::Logo-->  --}}
+{{--  <!--begin::Toggle-->  --}}
 <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
 <span class="svg-icon svg-icon svg-icon-xl">
-<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+{{--  <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->  --}}
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <polygon points="0 0 24 0 24 24 0 24" />
@@ -18,19 +18,20 @@
             <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
         </g>
 </svg>
-<!--end::Svg Icon-->
+{{--  <!--end::Svg Icon-->  --}}
 </span>
 </button>
-<!--end::Toolbar-->
+{{--  <!--end::Toolbar-->  --}}
 </div>
-<!--end::Brand-->
-<!--begin::Aside Menu-->
+{{--  <!--end::Brand-->  --}}
+{{--  <!--begin::Aside Menu-->  --}}
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-<!--begin::Menu Container-->
+{{--  <!--begin::Menu Container-->  --}}
 <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
-<!--begin::Menu Nav-->
+{{--  <!--begin::Menu Nav-->  --}}
 <ul class="menu-nav">
-<li class="menu-item menu-item-active" aria-haspopup="true">
+
+<li class="menu-item {{ Request::is('superadmin/dashboard*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('superadmin.dashboard') }}" class="menu-link">
             <span class="svg-icon menu-icon">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -47,7 +48,7 @@
         </a>
 </li>
 
-<li class="menu-item menu-item-active" aria-haspopup="true">
+<li class="menu-item" aria-haspopup="true">
         <a href="{{ route('welcome') }}" class="menu-link" target="_blank">
             <span class="svg-icon menu-icon">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -67,7 +68,7 @@
         <h4 class="menu-text">Custom</h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
 </li>
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu {{ Request::is('superadmin/catelog*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="javascript:;" class="menu-link menu-toggle">
             <span class="svg-icon menu-icon">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -87,7 +88,7 @@
             <i class="menu-arrow"></i>
             <ul class="menu-subnav">
 
-                    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {{ Request::is('superadmin/catelog/product*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
@@ -101,8 +102,8 @@
                         <div class="menu-submenu">
                                 <i class="menu-arrow"></i>
                                 <ul class="menu-subnav">
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="#" class="menu-link">
+                                    <li class="menu-item {{ Request::is('superadmin/catelog/product') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                            <a href="{{ route('superadmin.product.index') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                         <span></span>
                                                 </i>
@@ -111,8 +112,8 @@
                                     </li>
 
 
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="#" class="menu-link">
+                                    <li class="menu-item {{ Request::is('superadmin/catelog/product/create') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                            <a href="{{ route('superadmin.product.create') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                         <span></span>
                                                 </i>
@@ -122,7 +123,7 @@
                                 </ul>
                         </div>
                     </li>
-                    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {{ Request::is('superadmin/catelog/category*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
@@ -136,8 +137,8 @@
                         <div class="menu-submenu">
                                 <i class="menu-arrow"></i>
                                 <ul class="menu-subnav">
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="#" class="menu-link">
+                                    <li class="menu-item {{ Request::is('superadmin/catelog/category') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                            <a href="{{ route('superadmin.category.index') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                         <span></span>
                                                 </i>
@@ -146,23 +147,48 @@
                                     </li>
 
 
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/list-columns-2.html" class="menu-link">
+                                    <li class="menu-item {{ Request::is('superadmin/catelog/category/create') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                            <a href="{{ route('superadmin.category.create') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                         <span></span>
                                                 </i>
                                                 <span class="menu-text">Create New Category</span>
                                             </a>
                                     </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/add-user.html" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                </i>
-                                                <span class="menu-text">Create New Sub Category</span>
-                                            </a>
-                                    </li>
 
+                                </ul>
+                        </div>
+                    </li>
+                    <li class="menu-item menu-item-submenu {{ Request::is('superadmin/catelog/subcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                        <a href="javascript:;" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Sub Category</span>
+
+                                <i class="menu-arrow"></i>
+                        </a>
+                        <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
+                                    <li class="menu-item {{ Request::is('superadmin/catelog/subcategory') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                        <a href="{{ route('superadmin.subcategory.index') }}" class="menu-link">
+                                            <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                            </i>
+                                            <span class="menu-text">All Sub Categories</span>
+                                        </a>
+                                </li>
+
+
+                                <li class="menu-item {{ Request::is('superadmin/catelog/subcategory/create') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                        <a href="{{ route('superadmin.subcategory.create') }}" class="menu-link">
+                                            <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                            </i>
+                                            <span class="menu-text">Create New Category</span>
+                                        </a>
+                                </li>
                                 </ul>
                         </div>
                     </li>
@@ -172,9 +198,7 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Review & Comment</span>
-                                <span class="menu-label">
-                                    <span class="label label-rounded label-primary">6</span>
-                                </span>
+
                                 <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu">
@@ -217,57 +241,7 @@
                                 </ul>
                         </div>
                     </li>
-                    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-line">
-                                    <span></span>
-                                </i>
-                                <span class="menu-text">Products</span>
-                                <span class="menu-label">
-                                    <span class="label label-rounded label-primary">6</span>
-                                </span>
-                                <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                                <i class="menu-arrow"></i>
-                                <ul class="menu-subnav">
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="#" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                </i>
-                                                <span class="menu-text">Menu</span>
-                                            </a>
-                                    </li>
 
-
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                </i>
-                                                <span class="menu-text">List - Columns 2</span>
-                                            </a>
-                                    </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/add-user.html" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                </i>
-                                                <span class="menu-text">Add User</span>
-                                            </a>
-                                    </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                </i>
-                                                <span class="menu-text">Edit User</span>
-                                            </a>
-                                    </li>
-                                </ul>
-                        </div>
-                    </li>
             </ul>
         </div>
 </li>
@@ -275,7 +249,7 @@
 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
-                <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+                {{--  <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->  --}}
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <rect x="0" y="0" width="24" height="24" />
@@ -283,195 +257,50 @@
                             <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
                     </g>
                 </svg>
-                <!--end::Svg Icon-->
+                {{--  <!--end::Svg Icon-->  --}}
         </span>
-        <span class="menu-text">Catelog</span>
+        <span class="menu-text">Order</span>
         <i class="menu-arrow"></i>
     </a>
     <div class="menu-submenu">
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
 
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
-                            <i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">All Products</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add New Product</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
-                </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                            <i class="menu-bullet menu-bullet-line">
-                                <span></span>
-                            </i>
-                            <span class="menu-text">Categories</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
-                            <i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">All Categories</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Category</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Sub Category</span>
-                                        </a>
-                                </li>
-
-                            </ul>
-                    </div>
-                </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                            <i class="menu-bullet menu-bullet-line">
-                                <span></span>
-                            </i>
-                            <span class="menu-text">Review & Comment</span>
+                            <span class="menu-text">Active Order</span>
                             <span class="menu-label">
                                 <span class="label label-rounded label-primary">6</span>
                             </span>
-                            <i class="menu-arrow"></i>
+
                     </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Menu</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
                 </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
+                            <span class="menu-text">Complete Order</span>
                             <span class="menu-label">
                                 <span class="label label-rounded label-primary">6</span>
                             </span>
-                            <i class="menu-arrow"></i>
+
                     </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Menu</span>
-                                        </a>
-                                </li>
+                </li>
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
+                            <i class="menu-bullet menu-bullet-line">
+                                <span></span>
+                            </i>
+                            <span class="menu-text">Rejected Order</span>
+                            <span class="menu-label">
+                                <span class="label label-rounded label-primary">6</span>
+                            </span>
 
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
+                    </a>
                 </li>
         </ul>
     </div>
@@ -480,7 +309,7 @@
 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
-                <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+                {{--  <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->  --}}
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <rect x="0" y="0" width="24" height="24" />
@@ -488,195 +317,50 @@
                             <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
                     </g>
                 </svg>
-                <!--end::Svg Icon-->
+                {{--  <!--end::Svg Icon-->  --}}
         </span>
-        <span class="menu-text">Catelog</span>
+        <span class="menu-text">Users</span>
         <i class="menu-arrow"></i>
     </a>
     <div class="menu-submenu">
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
 
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
-                            <i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">All Products</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add New Product</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
-                </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                            <i class="menu-bullet menu-bullet-line">
-                                <span></span>
-                            </i>
-                            <span class="menu-text">Categories</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
-                            <i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">All Categories</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Category</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Sub Category</span>
-                                        </a>
-                                </li>
-
-                            </ul>
-                    </div>
-                </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                            <i class="menu-bullet menu-bullet-line">
-                                <span></span>
-                            </i>
-                            <span class="menu-text">Review & Comment</span>
+                            <span class="menu-text">All Customer</span>
                             <span class="menu-label">
                                 <span class="label label-rounded label-primary">6</span>
                             </span>
-                            <i class="menu-arrow"></i>
+
                     </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Menu</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
                 </li>
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
+                            <span class="menu-text">All Management User</span>
                             <span class="menu-label">
                                 <span class="label label-rounded label-primary">6</span>
                             </span>
-                            <i class="menu-arrow"></i>
+
                     </a>
-                    <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="#" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Menu</span>
-                                        </a>
-                                </li>
+                </li>
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="" class="menu-link">
+                            <i class="menu-bullet menu-bullet-line">
+                                <span></span>
+                            </i>
+                            <span class="menu-text">Add New Management User</span>
+                            <span class="menu-label">
+                                <span class="label label-rounded label-primary">6</span>
+                            </span>
 
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
-                                        </a>
-                                </li>
-                            </ul>
-                    </div>
+                    </a>
                 </li>
         </ul>
     </div>
@@ -699,7 +383,7 @@
                 </svg>
                 <!--end::Svg Icon-->
         </span>
-        <span class="menu-text">Catelog</span>
+        <span class="menu-text">Setting</span>
         <i class="menu-arrow"></i>
     </a>
     <div class="menu-submenu">
@@ -711,10 +395,7 @@
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
+                            <span class="menu-text">Banner</span>
                             <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -725,7 +406,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">All Products</span>
+                                            <span class="menu-text">All Banner</span>
                                         </a>
                                 </li>
 
@@ -735,7 +416,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">Add New Product</span>
+                                            <span class="menu-text">Add New Banner</span>
                                         </a>
                                 </li>
                             </ul>
@@ -746,10 +427,7 @@
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Categories</span>
-                            {{--  <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>  --}}
+                            <span class="menu-text">About Us</span>
                             <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -760,25 +438,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">All Categories</span>
-                                        </a>
-                                </li>
-
-
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Category</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Create New Sub Category</span>
+                                            <span class="menu-text">About us</span>
                                         </a>
                                 </li>
 
@@ -790,10 +450,7 @@
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Review & Comment</span>
-                            <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
+                            <span class="menu-text">Address & Contact Information</span>
                             <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -804,33 +461,17 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">Menu</span>
+                                            <span class="menu-text">Address</span>
                                         </a>
                                 </li>
 
 
                                 <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
+                                        <a href="#" class="menu-link">
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
+                                            <span class="menu-text">Contact No</span>
                                         </a>
                                 </li>
                             </ul>
@@ -841,10 +482,7 @@
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
-                            <span class="menu-text">Products</span>
-                            <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
+                            <span class="menu-text">Logo</span>
                             <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -855,35 +493,11 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                             </i>
-                                            <span class="menu-text">Menu</span>
+                                            <span class="menu-text">logo</span>
                                         </a>
                                 </li>
 
 
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/list-columns-2.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">List - Columns 2</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/add-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Add User</span>
-                                        </a>
-                                </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                        <a href="custom/apps/user/edit-user.html" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                            </i>
-                                            <span class="menu-text">Edit User</span>
-                                        </a>
-                                </li>
                             </ul>
                     </div>
                 </li>

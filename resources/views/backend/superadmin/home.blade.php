@@ -1,5 +1,9 @@
 @extends('backend.superadmin.layouts.app')
 
+@push('css')
+
+@endpush
+
 @section('content')
 
 <!--begin::Container-->
@@ -541,3 +545,7 @@
 </div>
 <!--end::Container-->
 @endsection
+
+@push('js')
+
+@endpush

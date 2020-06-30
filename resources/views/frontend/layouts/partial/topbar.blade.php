@@ -68,7 +68,7 @@
                         <li class="dropdown tt-megamenu-col-02 selected">
                             <a href="{{ route('welcome') }}">HOME</a>
                         </li>
-                        
+
                     </ul>
                 </nav>
             </div>
@@ -105,61 +105,6 @@
                                                 <div class="tt-price">
                                                     <span class="new-price">$14</span>
                                                     <span class="old-price">$24</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-02.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    $24
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-01.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    $14
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-04.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    $24
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-05.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    $17
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-06.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    $20
                                                 </div>
                                             </div>
                                         </a>

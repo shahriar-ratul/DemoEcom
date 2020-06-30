@@ -4,9 +4,7 @@
 <!--begin::Page Vendors Styles(used by this page)-->
 <link href="{{ asset('resource/backend/') }}/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
 <!--end::Page Vendors Styles-->
-
 @endpush
-
 
 @section('content')
 
@@ -71,31 +69,33 @@
     </div>
     <div class="card-body">
         <!--begin: Datatable-->
-        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable3">
             <thead>
                 <tr>
                     <th>Serial</th>
                     <th>Category Name</th>
+                    <th>SubCategory Name</th>
                     <th>Status</th>
                     <th>Created By</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($category as $key=>$cat)
+                @foreach ($sub_categories as $key=>$sub_cat)
                 <tr>
                     <td>{{++$key}}</td>
-                    <td>{{$cat->name}}</td>
-                    <td>{{$cat->status}}</td>
-                    <td>{{$cat->user->name}}</td>
+                    <td>{{$sub_cat->name}}</td>
+                    <td>{{$sub_cat->name}}</td>
+                    <td>{{$sub_cat->status}}</td>
+                    <td>{{$sub_cat->user->name}}</td>
                     <td>
-                            <a class="btn btn-info" href="{{ route('superadmin.cat.edit',$cat->id) }}">
+                            <a class="btn btn-info" href="{{ route('superadmin.subcategory.edit',$sub_cat->id) }}">
                             <i class="fas fa-edit"></i> Edit
                           </a>
-                          <a class="btn btn-danger text-light" onclick="deleteTag({{ $cat->id }})">
+                          <a class="btn btn-danger text-light" onclick="deleteTag({{ $sub_cat->id }})">
                             <i class="fas fa-trash-alt"></i> Delete
                           </a>
-                          <form id="delete-form-{{ $cat->id }}" action="{{ route('superadmin.cat.destroy',$cat->id) }}" method="POST" style="display: none;">
+                          <form id="delete-form-{{ $sub_cat->id }}" action="{{ route('superadmin.subcategory.destroy',$sub_cat->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
@@ -120,7 +120,7 @@
 <script src="{{ asset('resource/backend/') }}/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.5"></script>
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{ asset('resource/backend/') }}/assets/js/pages/crud/datatables/extensions/buttons.js?v=7.0.5"></script>
+<script src="{{ asset('resource/backend/') }}/assets/js/pages/crud/datatables/extensions/buttons.js"></script>
 <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
 
 <script type="text/javascript">

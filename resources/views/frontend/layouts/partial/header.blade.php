@@ -8,7 +8,8 @@
 	<meta name="author" content="wokiee">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="{{ asset('resource/frontend/') }}/css/theme.css">
+    <link rel="stylesheet" href="{{ asset('resource/frontend/') }}/css/theme.css">
+    @stack('css')
 </head>
 <body>
 <div id="loader-wrapper">

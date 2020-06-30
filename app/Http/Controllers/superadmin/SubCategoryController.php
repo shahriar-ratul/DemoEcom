@@ -3,26 +3,21 @@
 namespace App\Http\Controllers\superadmin;
 
 use App\Http\Controllers\Controller;
+use App\SubCategory;
 use Illuminate\Http\Request;
-use App\Category;
 use Illuminate\Support\Facades\Auth;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.superadmin.category.index',compact('categories'));
+        $sub_categories = SubCategory::get();
+        return view('backend.superadmin.category.index_subcategory',compact('sub_categories'));
     }
 
     /**
@@ -32,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.superadmin.category.create_category');
+        return view('backend.superadmin.category.create_sub_category');
     }
 
     /**
@@ -43,11 +38,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request,[
             'name' => ['required','unique:categories'],
             ]);
-        $category = new Category();
+        $category = new SubCategory();
         $category->name = $request->name;
         $category->status = 1;
         $category->created_by = Auth::user()->id;
@@ -78,7 +72,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         return view('backend.superadmin.category.edit_category',compact('category'));
-
     }
 
     /**
@@ -91,9 +84,9 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => ['required','unique:categories'],
+            'name' => ['required'],
             ]);
-        $category = Category::find($id);
+        $category = SubCategory::find($id);
         $category->name = $request->name;
         $category->status = 1;
         $category->created_by = Auth::user()->id;
@@ -111,8 +104,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        toastr()->success('Category Successfully Deleted.');
+        SubCategory::find($id)->delete();
+        toastr()->success('SubCategory Successfully Deleted.');
         return redirect()->back();
     }
 }

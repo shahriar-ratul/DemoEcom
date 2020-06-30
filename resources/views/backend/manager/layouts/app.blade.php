@@ -1,12 +1,12 @@
-@include('backend.layouts.partial.header')
+@include('backend.superadmin.layouts.partial.header')
 
-@include('backend.layouts.partial.topbar')
+@include('backend.superadmin.layouts.partial.topbar')
 
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
 
-        @include('backend.layouts.partial.sidebar')
+        @include('backend.superadmin.layouts.partial.sidebar')
 
 
 
@@ -84,4 +84,4 @@
 
 
 
-@include('backend.layouts.partial.footer')
+@include('backend.superadmin.layouts.partial.footer')

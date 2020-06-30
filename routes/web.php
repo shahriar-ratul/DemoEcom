@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/admin', 'WelcomeController@admin')->name('admin');
 Route::get('/admin/login', 'WelcomeController@showAdminlogin')->name('admin.login');
 
- Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 
 // superadmin Routes
@@ -32,7 +32,11 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
     Route::group(['prefix' => 'catelog'], function () {
         Route::resource('product', 'ProductController');
         Route::resource('category', 'CategoryController');
+        Route::resource('subcategory', 'SubCategoryController');
         Route::resource('review', 'ReviewController');
+
+
+
     });
     Route::group(['prefix' => 'order'], function () {
         Route::resource('order', 'OrderController');

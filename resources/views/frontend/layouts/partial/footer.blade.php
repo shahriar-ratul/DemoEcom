@@ -155,6 +155,8 @@
 
 
 
+
+
 <script src="{{ asset('resource/frontend/') }}/external/jquery/jquery.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/slick/slick.min.js"></script>
@@ -171,5 +173,7 @@
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.form.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.validate.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.form-init.js"></script>
+
+@stack('js')
 </body>
 </html>

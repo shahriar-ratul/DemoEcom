@@ -75,7 +75,7 @@ var KTDatatablesExtensionButtons = function() {
 			processing: true,
 			serverSide: true,
 			ajax: {
-				url: HOST_URL + '/api/datatables/demos/server.php',
+
 				type: 'POST',
 				data: {
 					// parameters for custom backend script demo
@@ -159,12 +159,54 @@ var KTDatatablesExtensionButtons = function() {
 
 	};
 
+	 var initTableShift = function() {
+		// begin first table
+		var table = $('#kt_datatable3').DataTable({
+			responsive: true,
+
+			buttons: [
+				'print',
+				'copyHtml5',
+                'excelHtml5',
+				'csvHtml5',
+				'pdfHtml5',
+			],
+		});
+
+		$('#export_print').on('click', function(e) {
+            e.preventDefault();
+			table.button(0).trigger();
+		});
+
+		$('#export_copy').on('click', function(e) {
+			e.preventDefault();
+			table.button(1).trigger();
+		});
+
+		$('#export_excel').on('click', function(e) {
+			e.preventDefault();
+			table.button(2).trigger();
+		});
+
+		$('#export_csv').on('click', function(e) {
+			e.preventDefault();
+			table.button(3).trigger();
+		});
+
+		$('#export_pdf').on('click', function(e) {
+			e.preventDefault();
+			table.button(4).trigger();
+		});
+
+    };
+
 	return {
 
 		//main function to initiate the module
 		init: function() {
 			initTable1();
 			initTable2();
+			initTableShift();
 		},
 
 	};

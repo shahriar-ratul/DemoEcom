@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\superadmin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $category = Product::get();
+        return view('backend.superadmin.product.index',compact('category'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.superadmin.category.create_category');
     }
 
     /**

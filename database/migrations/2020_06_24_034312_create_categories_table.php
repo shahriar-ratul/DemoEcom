@@ -15,16 +15,13 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name',255)->nullable();
-            $table->string('category_image',255)->nullable();
-            $table->string('category_short_description',500)->nullable();
-            $table->string('category_long_description',2000)->nullable();
-            $table->string('parent_id',100)->nullable();
-            $table->string('has_child',100)->nullable();
+            $table->string('name',255)->nullable();
+            $table->string('image',255)->nullable();
+            $table->string('short_description',500)->nullable();
+            $table->string('long_description',2000)->nullable();
             $table->string('is_featured',200)->nullable();
-            $table->string('level',100)->nullable();
+            $table->string('status')->nullable();
             $table->string('count_product',10000)->nullable();
-            $table->string('category_sort_order',1000)->nullable();
             $table->string('created_by');
             $table->string('updated_by');
             $table->timestamps();
