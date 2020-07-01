@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     public function user(){
-        return $this->belongsTo('App\User','updated_by','id');
+        return $this->belongsTo('App\User','created_by','id');
     }
 }

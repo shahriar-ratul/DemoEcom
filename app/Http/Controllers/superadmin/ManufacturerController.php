@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\superadmin;
 
-use App\Category;
 use App\Http\Controllers\Controller;
-use App\SubCategory;
+use App\Manufacturer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SubCategoryController extends Controller
+class ManufacturerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $sub_categories = SubCategory::get();
-        return view('backend.superadmin.category.index_sub_category',compact('sub_categories'));
+        $manufacturers = Manufacturer::get();
+        return view('backend.superadmin.manufacturer.index',compact('manufacturers'));
     }
 
     /**
@@ -28,8 +31,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        return view('backend.superadmin.category.create_sub_category',compact('categories'));
+        return view('backend.superadmin.manufacturer.create');
     }
 
     /**
@@ -43,15 +45,14 @@ class SubCategoryController extends Controller
         $this->validate($request,[
             'name' => ['required','unique:categories'],
             ]);
-        $subcategory= new SubCategory();
-        $subcategory->name = $request->name;
-        $subcategory->category_id = $request->category;
-        $subcategory->status = $request->status;
-        $subcategory->created_by = Auth::user()->id;
-        $subcategory->updated_by = Auth::user()->id;
-        $subcategory->save();
-        toastr()->success('Subcategory Added Successfuly');
-        return redirect()->route('superadmin.subcategory.index');
+        $manufacturer = new Manufacturer();
+        $manufacturer->name = $request->name;
+        $manufacturer->status =  $request->status;
+        $manufacturer->created_by = Auth::user()->id;
+        $manufacturer->updated_by = Auth::user()->id;
+        $manufacturer->save();
+        toastr()->success('Manufacturer Added Successfuly');
+        return redirect()->route('superadmin.manufacturer.index');
     }
 
     /**
@@ -62,7 +63,7 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -73,9 +74,8 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        $subcategory = SubCategory::find($id);
-        $categories  = Category::get();
-        return view('backend.superadmin.category.edit_sub_category',compact('subcategory','categories'));
+        $manufacturer= Manufacturer::find($id);
+        return view('backend.superadmin.manufacturer.edit',compact('manufacturer'));
     }
 
     /**
@@ -90,14 +90,13 @@ class SubCategoryController extends Controller
         $this->validate($request,[
             'name' => ['required'],
             ]);
-        $subcategory= SubCategory::find($id);
-        $subcategory->name = $request->name;
-        $subcategory->category_id = $request->category;
-        $subcategory->status = $request->status;
-        $subcategory->updated_by = Auth::user()->id;
-        $subcategory->save();
-        toastr()->success('subcategory Updated Successfuly');
-        return redirect()->route('superadmin.subcategory.index');
+        $manufacturer = Manufacturer::find($id);
+        $manufacturer->name = $request->name;
+        $manufacturer->status =  $request->status;
+        $manufacturer->updated_by = Auth::user()->id;
+        $manufacturer->save();
+        toastr()->success('Manufacturer Updated Successfuly');
+        return redirect()->route('superadmin.manufacturer.index');
     }
 
     /**
@@ -108,8 +107,8 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        SubCategory::find($id)->delete();
-        toastr()->success('SubcategorySuccessfully Deleted.');
+        Manufacturer::find($id)->delete();
+        toastr()->success('Manufacturer Successfully Deleted.');
         return redirect()->back();
     }
 }

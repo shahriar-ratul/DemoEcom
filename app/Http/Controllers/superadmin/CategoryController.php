@@ -49,7 +49,7 @@ class CategoryController extends Controller
             ]);
         $category = new Category();
         $category->name = $request->name;
-        $category->status = 1;
+        $category->status =  $request->status;
         $category->created_by = Auth::user()->id;
         $category->updated_by = Auth::user()->id;
         $category->save();
@@ -91,12 +91,11 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => ['required','unique:categories'],
+            'name' => ['required'],
             ]);
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->status = 1;
-        $category->created_by = Auth::user()->id;
+        $category->status =  $request->status;
         $category->updated_by = Auth::user()->id;
         $category->save();
         toastr()->success('Category Updated Successfuly');

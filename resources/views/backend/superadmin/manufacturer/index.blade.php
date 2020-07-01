@@ -15,11 +15,11 @@
 <div class="card card-custom card-custom gutter-t">
     <div class="card-header py-3">
         <div class="card-title">
-            <h3 class="card-label">Show All Category</h3>
+            <h3 class="card-label">Show All Manufacturers</h3>
         </div>
         <div class="card-toolbar">
 
-            <a href="{{ route('superadmin.category.create') }}" class="btn btn-primary font-weight-bolder">
+            <a href="{{ route('superadmin.manufacturer.create') }}" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -30,7 +30,7 @@
                         </g>
                     </svg>
                     <!--end::Svg Icon-->
-                </span>Add New Category</a>
+                </span>Add New Manufacturer</a>
         </div>
     </div>
     <div class="card-body">
@@ -46,26 +46,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $key=>$cat)
+                @foreach ($manufacturers as $key=>$manufacturer)
                 <tr>
                     <td>{{++$key}}</td>
-                    <td>{{$cat->name}}</td>
+                    <td>{{$manufacturer->name}}</td>
                     <td>
-                        @if($cat->status == 1)
+                        @if($manufacturer->status == 1)
                             Active
                         @else
                             Not Active
                         @endif
                     </td>
-                    <td>{{$cat->user->username}}</td>
+                    <td>{{$manufacturer->user->username}}</td>
                     <td>
-                            <a class="btn btn-info" href="{{ route('superadmin.category.edit',$cat->id) }}">
+                            <a class="btn btn-info" href="{{ route('superadmin.manufacturer.edit',$manufacturer->id) }}">
                             <i class="fas fa-edit"></i> Edit
                           </a>
-                          <a class="btn btn-danger text-light" onclick="deleteTag({{ $cat->id }})">
+                          <a class="btn btn-danger text-light" onclick="deleteTag({{ $manufacturer->id }})">
                             <i class="fas fa-trash-alt"></i> Delete
                           </a>
-                          <form id="delete-form-{{ $cat->id }}" action="{{ route('superadmin.category.destroy',$cat->id) }}" method="POST" style="display: none;">
+                          <form id="delete-form-{{ $manufacturer->id }}" action="{{ route('superadmin.manufacturer.destroy',$manufacturer->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

@@ -34,6 +34,11 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
         Route::resource('category', 'CategoryController');
         Route::resource('subcategory', 'SubCategoryController');
         Route::resource('review', 'ReviewController');
+        Route::resource('order', 'OrderController');
+        Route::resource('user', 'UserController');
+        Route::resource('setting', 'SettingController');
+        Route::resource('profile', 'ProfileController');
+        Route::resource('manufacturer', 'ManufacturerController');
 
 
 

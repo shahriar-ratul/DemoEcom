@@ -13,14 +13,15 @@
             <i class="mr-2"></i>
 
         </div>
-        <form class="form" action="{{ route('superadmin.category.store') }}" method="POST">
+        <form class="form" action="{{ route('superadmin.category.update',$category->id) }}" method="POST">
             @csrf
+            @method('PUT')
         <div class="card-toolbar">
             <a href="{{ route('superadmin.category.index') }}" class="btn btn-light-primary font-weight-bolder mr-2">
             <i class="ki ki-long-arrow-back icon-sm"></i>Back</a>
             <div class="btn-group">
                 <button type="submit" class="btn btn-primary font-weight-bolder">
-                <i class="ki ki-check icon-sm"></i>Save Form</button>
+                <i class="ki ki-check icon-sm"></i>Update Category</button>
 
             </div>
         </div>
@@ -36,10 +37,22 @@
                         <div class="form-group row">
                             <h4 class="col-3">Category Name</h4>
                             <div class="col-9">
-                                <input class="form-control form-control-solid border border-primary" type="text" name="name" placeholder="Enter Category Name" />
+                                <input class="form-control form-control-solid border border-primary" type="text" name="name" placeholder="Enter Category Name" value="{{ $category->name }}" />
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <h4 class="col-3">Status</h4>
+                            <div class="col-9">
+                                <select class="form-control select2" id="status" name="status">
+                                    <option >Select status</option>
+                                    <option value="1" @if ($category->status == 1)
+                                        selected @endif>Active</option>
+                                    <option value="0" @if ($category->status == 0)
+                                        selected @endif >Not Active</option>
 
+                                </select>
+                            </div>
+                        </div>
 
 
 
@@ -56,5 +69,17 @@
 @endsection
 
 @push('js')
+<script>
+
+    $(document).ready(function(){
+      // select optional subject 2
+            $('#status').select2({
+                placeholder: "Select Status",
+                // tags: true,
+                allowClear: true,
+                // tokenSeparators: [',', ' ']
+            });
+        });
+</script>
 
 @endpush
