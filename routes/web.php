@@ -40,8 +40,6 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
         Route::resource('profile', 'ProfileController');
         Route::resource('manufacturer', 'ManufacturerController');
 
-
-
     });
     Route::group(['prefix' => 'order'], function () {
         Route::resource('order', 'OrderController');

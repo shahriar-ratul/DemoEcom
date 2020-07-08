@@ -13,6 +13,10 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         // toastr()->success('Data has been saved successfully!');

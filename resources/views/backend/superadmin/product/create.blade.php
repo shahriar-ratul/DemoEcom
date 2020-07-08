@@ -9,98 +9,239 @@
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
     <div class="card-header">
         <div class="card-title">
-            <h3 class="card-label">Sticky Form Actions
+            <h3 class="card-label">Add New Product</h3>
             <i class="mr-2"></i>
-            <small class="">try to scroll the page</small></h3>
         </div>
+        {{--  <!--begin::Form-->  --}}
+
         <div class="card-toolbar">
-            <a href="#" class="btn btn-light-primary font-weight-bolder mr-2">
+            <form class="form" id="form" name="form" enctype="multipart/form-data" action="{{route('superadmin.product.store')}}" method="post">
+                @csrf
+            <a href="{{route('superadmin.product.index')}}" class="btn btn-light-primary font-weight-bolder mr-2">
             <i class="ki ki-long-arrow-back icon-sm"></i>Back</a>
             <div class="btn-group">
-                <button type="button" class="btn btn-primary font-weight-bolder">
-                <i class="ki ki-check icon-sm"></i>Save Form</button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                    <ul class="nav nav-hover flex-column">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon flaticon2-reload"></i>
-                                <span class="nav-text">Save &amp; continue</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon flaticon2-add-1"></i>
-                                <span class="nav-text">Save &amp; add new</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon flaticon2-power"></i>
-                                <span class="nav-text">Save &amp; exit</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <button type="submit" class="btn btn-primary font-weight-bolder">
+                <i class="ki ki-check icon-sm"></i>Save</button>
+
             </div>
         </div>
     </div>
     <div class="card-body">
-        {{--  <!--begin::Form-->  --}}
-        <form class="form" id="kt_form">
+
+
             <div class="row">
                 <div class="col-xl-2"></div>
+
                 <div class="col-xl-8">
                     <div class="my-5">
-                        <h3 class="text-dark font-weight-bold mb-10">Customer Info:</h3>
+                        <h3 class="text-dark font-weight-bold mb-10">Product Info:</h3>
                         <div class="form-group row">
-                            <label class="col-3">First Name</label>
+                            <label class="col-3">Category</label>
                             <div class="col-9">
-                                <input class="form-control form-control-solid" type="text" value="Nick" />
+                                <select class="form-control border border-primary select2" id="category" name="category[]" multiple="multiple" autocomplete="off">
+{{--                                    <option disabled selected></option>--}}
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-3">Last Name</label>
+                            <label class="col-3">Sub Category</label>
                             <div class="col-9">
-                                <input class="form-control form-control-solid" type="text" value="Watson" />
+                                <select class="form-control border border-primary select2" id="subcategory" name="subcategory[]" multiple="multiple" autocomplete="off">
+{{--                                    <option disabled selected></option>--}}
+                                    @foreach($subcategories as $subcategory)
+                                        <option value="{{$subcategory->id}}">{{$subcategory->category->name}}--{{$subcategory->name}}</option>
+                                    @endforeach
+
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-3">Company Name</label>
+                            <label class="col-3">Select Manufacturer</label>
                             <div class="col-9">
-                                <input class="form-control form-control-solid" type="text" value="Loop Inc." />
-                                <span class="form-text text-muted">If you want your invoices addressed to a company. Leave blank to  your full name.</span>
+                                <select class="form-control border border-primary select2" id="manufacturer" name="manufacturer[]"  autocomplete="off">
+                                    <option disabled selected></option>
+                                    @foreach($manufacturers as $manufacturer)
+                                        <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Name</label>
+                            <div class="col-9">
+                                <input class="form-control border border-primary" type="text" placeholder="Enter Product Name" name="product_name" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-3">Contact Phone</label>
+                            <label class="col-3">Product Price</label>
+                            <div class="col-9">
+                                <input class="form-control border border-primary" type="text" placeholder="Enter Product Price" name="product_price" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3">Product Sku</label>
+                            <div class="col-9">
+                                <input class="form-control border border-primary" type="text" placeholder="Enter Product Sku" name="product_sku" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Is featured</label>
+                            <div class="col-9">
+                                <select class="form-control select2" id="is_featured" name="is_featured" autocomplete="off">
+                                    <option disabled selected></option>
+                                    <option value="1">yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3">Is Leatest</label>
+                            <div class="col-9">
+                                <select class="form-control select2" id="is_latest" name="is_latest" autocomplete="off">
+                                    <option disabled selected></option>
+                                    <option value="1">yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Quantity</label>
                             <div class="col-9">
                                 <div class="input-group input-group-solid">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="la la-phone"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-solid" value="+45678967456" placeholder="Phone" />
-                                </div>
-                                <span class="form-text text-muted">We ll never share your email with anyone else.</span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-3">Email Address</label>
-                            <div class="col-9">
-                                <div class="input-group input-group-solid">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="la la-at"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-solid" value="nick.watson@loop.com" placeholder="Email" />
+
+                                    <input type="number" class="form-control"  name="product_quantity" placeholder="Quantity" />
                                 </div>
                             </div>
                         </div>
 
-                    </div>
+                        <div class="form-group row">
+                            <label class="col-3">Status</label>
+                            <div class="col-9">
+                                <select class="form-control select2" id="status" name="product_status" autocomplete="off">
+                                    <option selected disabled></option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Not Active</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Discription</label>
+                            <div class="col-9">
+                                <textarea class="summernote" name="product_description" id="kt_summernote_1"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-3">Video EmbedCode Link</label>
+                            <div class="col-9">
+                                <div class="input-group input-group-solid">
+
+                                    <input type="text" class="form-control form-control-solid" name="product_video_link" placeholder="Enter Video EmbedCode Link" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3">Product Image 1:</label>
+                            <div class="col-9 ">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_9" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                    <div class="image-input-wrapper"></div>
+                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file" name="image_1" accept=".png, .jpg, .jpeg" />
+                                    </label>
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+                                </div>
+                                <span class="form-text text-muted">Default empty input with blank image</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3">Product Image 2:</label>
+                            <div class="col-9 ">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_5" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                    <div class="image-input-wrapper"></div>
+                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file" name="image_2" accept=".png, .jpg, .jpeg" />
+                                    </label>
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+
+                                </div>
+                                <span class="form-text text-muted">Default empty input with blank image</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Image 3:</label>
+                            <div class="col-9 ">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_6" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                    <div class="image-input-wrapper"></div>
+                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file" name="image_3" accept=".png, .jpg, .jpeg" />
+
+                                    </label>
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+
+                                </div>
+                                <span class="form-text text-muted">Default empty input with blank image</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Image 4:</label>
+                            <div class="col-9 ">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_7" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                    <div class="image-input-wrapper"></div>
+                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file" name="image_4" accept=".png, .jpg, .jpeg" />
+
+                                    </label>
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+
+                                </div>
+                                <span class="form-text text-muted">Default empty input with blank image</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-3">Product Image 5:</label>
+                            <div class="col-9 ">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_8" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                    <div class="image-input-wrapper"></div>
+                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file" name="image_5" accept=".png, .jpg, .jpeg" />
+                                    </label>
+                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                    </span>
+
+                                </div>
+                                <span class="form-text text-muted">Default empty input with blank image</span>
+                            </div>
+                        </div>
+
+
+
 
                 </div>
                 <div class="col-xl-2"></div>
@@ -110,8 +251,81 @@
     </div>
 </div>
 {{--  <!--end::Card-->  --}}
+
+
 @endsection
 
 @push('js')
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="{{asset('resource/backend')}}/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.5"></script>
+    <!--end::Page Scripts-->
+        <!--begin::Page Scripts(used by this page)-->
+        <script src="{{asset('resource/backend')}}/assets/js/pages/crud/file-upload/image-input.js"></script>
+        <!--end::Page Scripts-->
+
+        <!--begin::Page Scripts(used by this page)-->
+        <script src="{{asset('resource/backend')}}/assets/js/pages/crud/forms/editors/summernote.js"></script>
+        <!--end::Page Scripts-->
+
+    <script >
+        $(document).ready(function(){
+
+
+            // select Category
+            $('#category').select2({
+                placeholder: "Select Category",
+                tags: true,
+                allowClear: true,
+                tokenSeparators: [',', ' ']
+            });
+            // select sub Category
+            $('#subcategory').select2({
+                placeholder: "Select SubCategory",
+                tags: true,
+                allowClear: true,
+                tokenSeparators: [',', ' ']
+            });
+            // select sub Category
+            $('#manufacturer').select2({
+                placeholder: "Select Manufacturer",
+                // tags: true,
+                allowClear: true,
+                // tokenSeparators: [',', ' ']
+            });
+
+            // select is feature
+            $('#is_featured').select2({
+                placeholder: "Select Feature",
+                // tags: true,
+                allowClear: true,
+                // tokenSeparators: [',', ' ']
+            });
+
+            // select is feature
+            $('#is_latest').select2({
+                placeholder: "Select Latest",
+                // tags: true,
+                allowClear: true,
+                // tokenSeparators: [',', ' ']
+            });
+
+            // select status
+            $('#status').select2({
+                placeholder: "Select Status",
+                // tags: true,
+                allowClear: true,
+                // tokenSeparators: [',', ' ']
+            });
+
+
+
+
+
+
+
+        });
+
+    </script>
+
 
 @endpush

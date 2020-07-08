@@ -163,6 +163,7 @@ var KTDatatablesExtensionButtons = function() {
 		// begin first table
 		var table = $('#kt_datatable3').DataTable({
 			responsive: true,
+            "autoWidth": true,
 
 			buttons: [
 				'print',

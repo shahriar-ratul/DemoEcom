@@ -43,7 +43,7 @@
         <!--begin::Header-->
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
-                <div class="symbol-label" style="background-image:url('{{ asset('resource/backend/') }}/assets/media/users/300_21.jpg')"></div>
+                <div class="symbol-label" style="background-image:url('{{ asset('resource/backend/') }}/assets/media/users/default.jpg')"></div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
@@ -213,11 +213,12 @@
 		<script src="{{ asset('resource/backend/') }}/assets/js/scripts.bundle.js?v=7.0.5"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Vendors(used by this page)-->
-		<script src="{{ asset('resource/backend/') }}/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5"></script>
+{{--		<script src="{{ asset('resource/backend/') }}/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.5"></script>--}}
 		<!--end::Page Vendors-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="{{ asset('resource/backend/') }}/assets/js/pages/widgets.js?v=7.0.5"></script>
+{{--		<script src="{{ asset('resource/backend/') }}/assets/js/pages/widgets.js?v=7.0.5"></script>--}}
         <!--end::Page Scripts-->
+
 
         @stack('js')
         @toastr_js

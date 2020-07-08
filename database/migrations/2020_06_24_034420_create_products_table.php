@@ -15,16 +15,20 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('category_row_id',11)->nullable();
-            $table->string('sub_cat_id',11)->nullable();
+            $table->string('category_id',11)->nullable();
+            $table->string('subcategory_id',11)->nullable();
+            $table->string('manufacturer_id',11)->nullable();
             $table->string('product_name')->nullable();
-            $table->string('product_name_url')->nullable();
+            $table->string('slug')->nullable();
             $table->string('product_price')->nullable();
             $table->string('product_qty')->nullable();
+            $table->string('product_size')->nullable();
             $table->string('product_height')->nullable();
             $table->string('product_width')->nullable();
             $table->string('product_weight')->nullable();
             $table->string('product_sku',300)->nullable();
+            $table->string('product_video_link')->nullable();
+            $table->string('product_status')->nullable();
             $table->string('product_image')->nullable();
             $table->string('product_image_1')->nullable();
             $table->string('product_image_2')->nullable();
@@ -36,16 +40,10 @@ class CreateProductsTable extends Migration
             $table->string('product_image_8')->nullable();
             $table->string('product_image_9')->nullable();
             $table->string('product_image_10')->nullable();
-            $table->string('product_image_11')->nullable();
-            $table->string('product_image_12')->nullable();
-            $table->string('product_image_13')->nullable();
-            $table->string('product_image_14')->nullable();
-            $table->string('product_image_15')->nullable();
-            $table->string('product_image_16')->nullable();
             $table->string('is_featured',2)->nullable();
             $table->string('is_latest',2)->nullable();
-            $table->string('product_short_description',3000)->nullable();
-            $table->string('product_long_description',5000)->nullable();
+            $table->text('product_short_description')->nullable();
+            $table->text('product_long_description')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

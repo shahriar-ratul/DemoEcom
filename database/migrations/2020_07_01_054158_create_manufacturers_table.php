@@ -22,8 +22,6 @@ class CreateManufacturersTable extends Migration
             $table->string('short_description',500)->nullable();
             $table->string('long_description',2000)->nullable();
             $table->string('status')->nullable();
-            $table->string('is_featured')->nullable();
-            $table->string('count_product')->nullable();
             $table->string('created_by');
             $table->string('updated_by');
             $table->timestamps();
