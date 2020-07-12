@@ -175,5 +175,17 @@
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.form-init.js"></script>
 
 @stack('js')
-</body>
-</html>
+@toastr_js
+@toastr_render
+<script>
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    toastr.error('{{ $error }}','Error',{
+
+        closeButton:true,
+        progressBar:true,
+    });
+    @endforeach
+    @endif
+</script>
+

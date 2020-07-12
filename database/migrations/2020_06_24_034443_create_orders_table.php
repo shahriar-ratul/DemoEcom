@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('status')->nullable();
             $table->string('created_by');
             $table->string('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

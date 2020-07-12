@@ -28,6 +28,7 @@ class CreateInvoicesTable extends Migration
             $table->string('order_by')->nullable();
             $table->string('created_by');
             $table->string('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

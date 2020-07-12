@@ -23,6 +23,7 @@ class CreateSettingsTable extends Migration
             $table->string('twitter_link')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

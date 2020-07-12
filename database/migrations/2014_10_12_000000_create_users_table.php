@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('designation')->default('user');
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
-
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

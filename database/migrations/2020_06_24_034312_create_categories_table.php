@@ -26,6 +26,7 @@ class CreateCategoriesTable extends Migration
             $table->string('count_product')->nullable();
             $table->string('created_by');
             $table->string('updated_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

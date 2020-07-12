@@ -88,6 +88,7 @@ class ProductController extends Controller
         $product->subcategory_id = $subcategory;
         $product->manufacturer_id = $manufacturer;
         $product->product_sku  = $request->product_sku;
+        $product->product_status  = $request->product_status;
         $product->product_long_description  = $request->product_description;
         $product->product_video_link  = $request->product_video_link;
 
@@ -225,6 +226,7 @@ class ProductController extends Controller
         $product->product_sku  = $request->product_sku;
         $product->product_status  = $request->product_status;
         $product->product_long_description  = $request->product_description;
+        $product->product_video_link  = $request->product_video_link;
 
 
         $path = storage_path('product/uploads');
@@ -293,35 +295,35 @@ class ProductController extends Controller
 //        Product::find($id)->delete();
         $product = Product::find($id);
 
-        $image = $product->product_image;
-        if($image!=null && $image != "default.jpg"){
-            $filepath = storage_path().'/product/uploads/'.$image;
-            File::delete($filepath);
-        }
-
-        $image = $product->product_image_1;
-        if($image!=null && $image != "default.jpg"){
-            $filepath = storage_path().'/product/uploads/'.$image;
-            File::delete($filepath);
-        }
-
-        $image = $product->product_image_2;
-        if($image!=null && $image != "default.jpg"){
-            $filepath = storage_path().'/product/uploads/'.$image;
-            File::delete($filepath);
-        }
-
-        $image = $product->product_image_3;
-        if($image!=null && $image != "default.jpg"){
-            $filepath = storage_path().'/product/uploads/'.$image;
-            File::delete($filepath);
-        }
-
-        $image = $product->product_image_4;
-        if($image!=null && $image != "default.jpg"){
-            $filepath = storage_path().'/product/uploads/'.$image;
-            File::delete($filepath);
-        }
+//        $image = $product->product_image;
+//        if($image!=null && $image != "default.jpg"){
+//            $filepath = storage_path().'/product/uploads/'.$image;
+//            File::delete($filepath);
+//        }
+//
+//        $image = $product->product_image_1;
+//        if($image!=null && $image != "default.jpg"){
+//            $filepath = storage_path().'/product/uploads/'.$image;
+//            File::delete($filepath);
+//        }
+//
+//        $image = $product->product_image_2;
+//        if($image!=null && $image != "default.jpg"){
+//            $filepath = storage_path().'/product/uploads/'.$image;
+//            File::delete($filepath);
+//        }
+//
+//        $image = $product->product_image_3;
+//        if($image!=null && $image != "default.jpg"){
+//            $filepath = storage_path().'/product/uploads/'.$image;
+//            File::delete($filepath);
+//        }
+//
+//        $image = $product->product_image_4;
+//        if($image!=null && $image != "default.jpg"){
+//            $filepath = storage_path().'/product/uploads/'.$image;
+//            File::delete($filepath);
+//        }
         $product->delete();
 
         toastr()->success('Product Successfully Deleted.');

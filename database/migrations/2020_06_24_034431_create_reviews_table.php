@@ -21,6 +21,7 @@ class CreateReviewsTable extends Migration
             $table->string('email');
             $table->string('review');
             $table->string('message');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

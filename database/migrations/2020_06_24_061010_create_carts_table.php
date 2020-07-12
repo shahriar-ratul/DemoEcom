@@ -18,6 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('product_id')->nullable();
             $table->string('quantity')->nullable();
             $table->string('user_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,4 +1,7 @@
 @extends('frontend.layouts.app')
+@section('title','Welcome')
+@push('css')
+@endpush
 @section('content')
 
 <div class="container-indent nomargin">
@@ -9,8 +12,9 @@
                 <div class="tp-banner-container">
                     <div class="tp-banner revolution">
                         <ul>
-                            <li data-thumb="{{ asset('resource/frontend/') }}/images/slides/01/slide-01.jpg" data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
-                                <img src="{{ asset('resource/frontend/') }}/images/slides/01/slide-01.jpg"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
+                            @foreach($banners as $banner)
+                            <li data-thumb="{{ asset('banner') }}/{{$banner->image}}" data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
+                                <img src="{{ asset('banner') }}/{{$banner->image}}"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
                                 <div class="tp-caption tp-caption1 lft stb"
                                     data-x="center"
                                     data-y="center"
@@ -20,29 +24,12 @@
                                     data-start="900"
                                     data-easing="Power4.easeOut"
                                     data-endeasing="Power4.easeIn">
-                                    <div class="tp-caption1-wd-1 tt-base-color">Multipurpose</div>
-                                    <div class="tp-caption1-wd-2">Premium<br>Html Template</div>
-                                    <div class="tp-caption1-wd-3">30 skins, powerful features, great support, exclusive offer</div>
-                                    <div class="tp-caption1-wd-4"><a href="listing-left-column.html" target="_blank" class="btn btn-xl" data-text="SHOP NOW!">SHOP NOW!</a></div>
+{{--                                    <div class="tp-caption1-wd-2 ">{{$banner->title}}</div>--}}
+{{--                                    <div class="tp-caption1-wd-4"><a href="#" target="_blank" class="btn btn-xl" data-text="SHOP NOW!">SHOP NOW!</a></div>--}}
                                 </div>
                             </li>
-                            <li data-thumb="{{ asset('resource/frontend/') }}/images/slides/01/slide-02.jpg" data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
-                                <img src="{{ asset('resource/frontend/') }}/images/slides/01/slide-02.jpg"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
-                                <div class="tp-caption tp-caption1 lft stb"
-                                    data-x="center"
-                                    data-y="center"
-                                    data-hoffset="0"
-                                    data-voffset="0"
-                                    data-speed="600"
-                                    data-start="900"
-                                    data-easing="Power4.easeOut"
-                                    data-endeasing="Power4.easeIn">
-                                    <div class="tp-caption1-wd-1 tt-white-color">Ready To</div>
-                                    <div class="tp-caption1-wd-2 tt-white-color">Unique <br/>Demos</div>
-                                    <div class="tp-caption1-wd-3 tt-white-color">Optimized for speed, website that sells</div>
-                                    <div class="tp-caption1-wd-4"><a href="listing-left-column.html" target="_blank" class="btn btn-xl" data-text="SHOP NOW!">SHOP NOW!</a></div>
-                                </div>
-                            </li>
+                            @endforeach
+
 
                         </ul>
                     </div>
@@ -57,11 +44,12 @@
     <div class="container-fluid">
         <div class="row tt-layout-promo-box">
 
+            @foreach($latest_products as $product)
             <div class="col-sm-12 col-md-6">
                 <div class="row">
                     <div class="col-sm-6">
                         <a href="#" class="tt-promo-box tt-one-child hover-type-2">
-                            <img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-01.jpg" alt="">
+                            <img src="{{ asset('resource/frontend') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-01.jpg" alt="">
                             <div class="tt-description">
                                 <div class="tt-description-wrapper">
                                     <div class="tt-background"></div>
@@ -70,7 +58,7 @@
                             </div>
                         </a>
                         <a href="#" class="tt-promo-box tt-one-child hover-type-2">
-                            <img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-02.jpg" alt="">
+                            <img src="{{ asset('resource/frontend') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-02.jpg" alt="">
                             <div class="tt-description">
                                 <div class="tt-description-wrapper">
                                     <div class="tt-background"></div>
@@ -83,6 +71,7 @@
                 </div>
             </div>
 
+            @endforeach
         </div>
     </div>
 </div>
@@ -95,6 +84,7 @@
             <div class="tt-description">TOP VIEW IN THIS WEEK</div>
         </div>
         <div class="row tt-layout-product-item">
+            @foreach($latest_products as $product)
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="tt-product thumbprod-center product-nohover">
                     <div class="tt-image-box">
@@ -151,6 +141,7 @@
             </div>
 
 
+            @endforeach
         </div>
     </div>
 </div>
@@ -258,3 +249,7 @@
 
 
 @endsection
+
+
+@push('js')
+@endpush

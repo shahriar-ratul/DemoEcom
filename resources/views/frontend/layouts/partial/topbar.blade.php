@@ -2,10 +2,26 @@
 <!-- tt-mobile menu -->
 <nav class="panel-menu mobile-main-menu">
 <ul>
-<li>
-    <a href="{{ route('welcome') }}">HOME</a>
-</li>
 
+    <li>
+        <a href="{{ route('welcome') }}">HOME</a>
+    </li>
+{{--    all categories--}}
+    @foreach($categories as $category)
+    <li>
+        <a href="">{{$category->name}}</a>
+        <ul>
+            @foreach($subcategories as $subcategory)
+                @if ($category->id == $subcategory->category_id)
+                <li>
+                      <a href=""> {{$subcategory->name}}</a>
+                </li>
+                @endif
+            @endforeach
+        </ul>
+    </li>
+    @endforeach
+    <li><a href="">All Products</a></li>
 
 
 </ul>
@@ -41,7 +57,7 @@
 <div class="row">
     <div class="tt-logo-container">
         <!-- mobile logo -->
-        <a class="tt-logo tt-logo-alignment" href="index.html"><img src="images/custom/logo.png" alt=""></a>
+        <a class="tt-logo tt-logo-alignment" href="{{route('welcome')}}"><img src="{{ asset('/resource/logo') }}/logo.png" alt=""></a>
         <!-- /mobile logo -->
     </div>
 </div>
@@ -56,7 +72,7 @@
     <div class="tt-col-obj tt-obj-logo">
         <!-- logo -->
         <a class="tt-logo tt-logo-alignment" href="{{ route('welcome') }}">
-            <img src="{{ asset('/resource/logo') }}/logo.jpg" alt="" style="max-height: 70px;width:50px"></a>
+            <img src="{{ asset('/resource/logo') }}/logo.png" alt="" style="max-height: 70px;width:50px"></a>
         <!-- /logo -->
     </div>
     <div class="tt-col-obj tt-obj-menu">
@@ -65,9 +81,58 @@
             <div class="tt-desctop-menu">
                 <nav>
                     <ul>
-                        <li class="dropdown tt-megamenu-col-02 selected">
+                        <li class="dropdown tt-megamenu-col-02 {{Request::is('/') ? 'selected':''}}">
                             <a href="{{ route('welcome') }}">HOME</a>
                         </li>
+
+                            <li class="dropdown tt-megamenu-col-02 {{Request::is('about-us') ? 'selected': '' }}">
+                                <a href="{{route('about_us')}}">All Categories</a>
+
+                                <div class="dropdown-menu">
+                                    <div class="row tt-col-list">
+                                        @foreach($categories as $category)
+                                        <div class="col">
+                                            <h6 class="tt-title-submenu">
+                                                <a href="">{{$category->name}}</a>
+                                            </h6>
+                                            @foreach($subcategories as $subcategory)
+                                                @if ($category->id == $subcategory->category_id)
+
+                                                <ul class="tt-megamenu-submenu">
+
+                                                    <li>
+                                                        <a href="">{{$subcategory->name}}</a>
+                                                    </li>
+
+                                                </ul>
+
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        @endforeach
+                                </div>
+
+
+                            </li>
+
+
+
+                        <li class="dropdown">
+                            <a href="{{route('product.show')}}">All Products</a>
+                        </li>
+
+                        <li class="dropdown tt-megamenu-col-02 {{Request::is('about-us') ? 'selected': '' }}">
+                            <a href="{{route('about_us')}}">About Us </a>
+                        </li>
+{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('contact-us') ? 'selected':''}}">--}}
+{{--                            <a href="{{route('contact_us')}}">Contact Us </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('faq') ? 'selected':''}}">--}}
+{{--                            <a href="{{route('faq')}}">Faq </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('terms-and-condition')?'selected':''}}">--}}
+{{--                            <a href="{{route('terms_and_condition')}}">Terms And Condition </a>--}}
+{{--                        </li>--}}
 
                     </ul>
                 </nav>
@@ -252,6 +317,12 @@
 <div class="tt-stuck-nav">
 <div class="container">
 <div class="tt-header-row ">
+    <div class="tt-col-obj tt-obj-logo">
+        <!-- logo -->
+        <a class="tt-logo tt-logo-alignment" href="{{ route('welcome') }}">
+            <img src="{{ asset('/resource/logo') }}/logo.png" alt="" style="max-height: 70px;width:50px"></a>
+        <!-- /logo -->
+    </div>
     <div class="tt-stuck-parent-menu"></div>
     <div class="tt-stuck-parent-search tt-parent-box"></div>
     <div class="tt-stuck-parent-cart tt-parent-box"></div>
