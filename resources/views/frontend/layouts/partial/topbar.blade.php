@@ -124,16 +124,6 @@
                         <li class="dropdown tt-megamenu-col-02 {{Request::is('about-us') ? 'selected': '' }}">
                             <a href="{{route('about_us')}}">About Us </a>
                         </li>
-{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('contact-us') ? 'selected':''}}">--}}
-{{--                            <a href="{{route('contact_us')}}">Contact Us </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('faq') ? 'selected':''}}">--}}
-{{--                            <a href="{{route('faq')}}">Faq </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="dropdown tt-megamenu-col-02 {{Request::is('terms-and-condition')?'selected':''}}">--}}
-{{--                            <a href="{{route('terms_and_condition')}}">Terms And Condition </a>--}}
-{{--                        </li>--}}
-
                     </ul>
                 </nav>
             </div>
@@ -271,12 +261,15 @@
                     </div>
                     <div class="tt-dropdown-inner">
                         <ul>
-                            <li><a href="login.html"><i class="icon-f-94"></i>Account</a></li>
-                            <li><a href="wishlist.html"><i class="icon-n-072"></i>Wishlist</a></li>
+                            @auth
+                                <li><a href="{{url('/admin')}}"><i class="icon-f-77"></i>Sign Out</a></li>
+                            @endauth
+                            <li><a href="{{route('login')}}"><i class="icon-f-94"></i>Login</a></li>
+                            <li><a href=""><i class="icon-n-072"></i>Wishlist</a></li>
                             <li><a href="compare.html"><i class="icon-n-08"></i>Compare</a></li>
                             <li><a href="page404.html"><i class="icon-f-68"></i>Check Out</a></li>
                             <li><a href="login.html"><i class="icon-f-76"></i>Sign In</a></li>
-                            <li><a href="page404.html"><i class="icon-f-77"></i>Sign Out</a></li>
+
                             <li><a href="create-account.html"><i class="icon-f-94"></i>Register</a></li>
                         </ul>
                     </div>

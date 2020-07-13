@@ -177,6 +177,8 @@ return [
 
         // toaster
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        /* cart*/
+        Darryldecode\Cart\CartServiceProvider::class,
 
 
     ],
@@ -230,6 +232,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*cart */
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 

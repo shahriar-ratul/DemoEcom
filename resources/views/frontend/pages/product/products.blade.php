@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 @section('title','Products')
 @push('css')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 @endpush
 
 @section('content')
@@ -260,12 +261,12 @@
                                             </div>
                                             <div class="tt-product-inside-hover">
                                                 <div class="tt-row-btn">
-                                                    <a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+                                                    <a href="{{route('cart.add',$product->id)}}" class="tt-btn-addtocart thumbprod-button-bg" >ADD TO CART</a>
                                                 </div>
                                                 <div class="tt-row-btn">
                                                     <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
                                                     <a href="#" class="tt-btn-wishlist"></a>
-                                                    <a href="#" class="tt-btn-compare"></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -275,12 +276,13 @@
                                 @endforeach
 
                             </div>
-                            <div class="text-center tt_product_showmore">
-                                <a href="#" class="btn btn-border">LOAD MORE</a>
-                                <div class="tt_item_all_js">
-                                    <a href="#" class="btn btn-border01">NO MORE ITEM TO SHOW</a>
-                                </div>
+
+
+
+                            <div class="d-flex justify-content-center m-5">
+                                {{$products->render()}}
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -11,8 +11,12 @@
 
     <link rel="shortcut icon" href="{{asset('resource/logo/favicon.ico')}}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ asset('resource/frontend/') }}/css/theme.css">
+
+
+
     @stack('css')
+    <link rel="stylesheet" href="{{ asset('resource/frontend/') }}/css/theme.css">
+
     @toastr_css
     <style>
         .tt-desctop-menu .tt-megamenu-submenu > li > a {

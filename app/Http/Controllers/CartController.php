@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\Product;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +21,26 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        //
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+        $cartItems = \Cart::session(auth()->id())->getContent();
+        return view('frontend.pages.cart.index', compact('cartItems','categories','subcategories'));
+    }
+
+    public function add($id){
+        $product = Product::find($id);
+//        dd($product);
+        \Cart::session(auth()->id())->add(array(
+            'id' => $product->id,
+            'name' => $product->product_name,
+            'price' => $product->product_price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+        return redirect()->route('cart.index');
+
     }
 
     /**

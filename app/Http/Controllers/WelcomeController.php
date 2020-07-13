@@ -62,7 +62,7 @@ class WelcomeController extends Controller
 
     public function all_products(){
 
-        $products =Product::all();
+        $products =Product::paginate(15);
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
         return view('frontend.pages.product.products',compact('categories','subcategories','products'));

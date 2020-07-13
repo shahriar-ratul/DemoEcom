@@ -31,6 +31,11 @@ Route::prefix('product')->group(function (){
 
 });
 
+Route::prefix('cart')->group(function(){
+    Route::get('/add/{id}','CartController@add')->name('cart.add'); // All Product
+    Route::get('/items','CartController@index')->name('cart.index'); // All Product
+
+});
 
 
 
