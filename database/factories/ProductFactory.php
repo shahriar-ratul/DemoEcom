@@ -7,9 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'category_id' =>$faker->numberBetween(1,10),
-        'subcategory_id' =>$faker->numberBetween(1,4),
-        'manufacturer_id' =>$faker->numberBetween(1,10),
+        'category_id' =>json_encode([$faker->numberBetween(1,10)]),
+        'subcategory_id' =>json_encode([$faker->numberBetween(1,4)]),
+        'manufacturer_id' =>json_encode([$faker->numberBetween(1,10)]),
         'product_name' => $faker->sentence(2),
         'product_image' => 'default.jpg',
         'product_sku' => $faker->sentence('4'),

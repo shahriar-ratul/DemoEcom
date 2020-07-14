@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -21,10 +22,14 @@ class CartController extends Controller
     }
     public function index()
     {
+
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
         $cartItems = \Cart::session(auth()->id())->getContent();
-        return view('frontend.pages.cart.index', compact('cartItems','categories','subcategories'));
+
+        $subTotal = \Cart::session(auth()->id())->getSubTotal();
+        $total = \Cart::session(auth()->id())->getTotal();
+        return view('frontend.pages.cart.index', compact('cartItems','categories','subcategories','subTotal','total'));
     }
 
     public function add($id){
@@ -93,9 +98,17 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        foreach($request->id as $key=>$rowId){
+                \Cart::session(auth()->id())->update($rowId, [
+                    'quantity' => [
+                        'relative' => false,
+                        'value' => $request->quantity[$key],
+                    ]
+                ]);
+            }
+            return back();
     }
 
     /**
@@ -106,6 +119,21 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Cart::session(auth()->id())->remove($id);
+
+        return back();
+    }
+    public function clear_all()
+    {
+
+        \Cart::session(Auth()->user()->id)->clear();
+
+        return back();
+    }
+
+    public function checkout(){
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+        return view('frontend.pages.cart.checkout',compact('categories','subcategories'));
     }
 }

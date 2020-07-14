@@ -34,6 +34,10 @@
             -webkit-transition: all 0.2s linear;
             -o-transition: all 0.2s linear;
         }
+
+        header .tt-cart .tt-dropdown-toggle .tt-badge-cart {
+            text-align: center;
+        }
     </style>
 </head>
 

@@ -25,25 +25,31 @@ Route::get('/terms-and-condition', 'WelcomeController@terms_and_condition')->nam
 
 Route::prefix('product')->group(function (){
     Route::get('/show','WelcomeController@all_products')->name('product.show'); // All Product
-    Route::get('/single/details/{id}', 'WelcomeController@product_details')->name('product.show.details'); //product details
+    Route::get('/single/details/{id}', 'WelcomeController@single_product')->name('product.show.details'); //product details
     Route::get('/{cat_id}', 'WelcomeController@show_product_by_category')->name('product.show.category');// show product by category
     Route::get('/{cat_id}/{sub_cat_id}', 'WelcomeController@show_product_by_subcategory')->name('product.show.subcategory');// show product by subcategory
 
 });
 
 Route::prefix('cart')->group(function(){
-    Route::get('/add/{id}','CartController@add')->name('cart.add'); // All Product
-    Route::get('/items','CartController@index')->name('cart.index'); // All Product
-
+    Route::get('/add/{id}','CartController@add')->name('cart.add'); // All item to cart
+    Route::get('/items','CartController@index')->name('cart.index'); // All cart item
+    Route::post('/update','CartController@update')->name('cart.update'); // Update cart item
+    Route::get('/destroy/{id}', 'CartController@destroy')->name('cart.destroy'); //remove cart item
+    Route::get('/clear/all', 'CartController@clear_all')->name('cart.clear.all'); //remove cart item
+    Route::get('/checkout', 'CartController@checkout')->name('cart.checkout'); //checkout page
 });
 
+Route::prefix('order')->group(function(){
+    Route::resource('order', 'OrderController');
+});
 
 
 
 // all admin users route
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'WelcomeController@admin')->name('admin');
 Route::get('/admin/login', 'WelcomeController@showAdminlogin')->name('admin.login');
 

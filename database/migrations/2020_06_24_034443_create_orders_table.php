@@ -15,14 +15,32 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('product_row_id')->nullable();
-            $table->string('tracking_number')->nullable();
-            $table->string('user_id')->nullable();
-            $table->string('product_price')->nullable();
-            $table->string('product_qty')->nullable();
-            $table->string('product_total_price')->nullable();
-            $table->string('payment_method')->nullable();
-            $table->string('status')->nullable();
+            $table->string('order_number');
+            $table->unsignedBigInteger('user_id');
+            $table->enum('status', ['pending','processing','completed','decline'])->default('pending');
+            $table->float('grand_total');
+            $table->integer('item_count');
+            $table->boolean('is_paid')->default(false);
+            $table->enum('payment_method', ['cash_on_delivery', 'paypal','stripe','card'])->default('cash_on_delivery');
+
+            $table->string('shipping_fullname');
+            $table->string('shipping_address');
+            $table->string('shipping_city');
+            $table->string('shipping_state');
+            $table->string('shipping_zipcode');
+            $table->string('shipping_phone');
+            $table->string('shipping_email');
+            $table->string('notes')->nullable();
+
+            $table->string('billing_fullname');
+            $table->string('billing_address');
+            $table->string('billing_city');
+            $table->string('billing_state');
+            $table->string('billing_zipcode');
+            $table->string('billing_phone');
+            $table->string('billing_email');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('created_by');
             $table->string('updated_by');
             $table->softDeletes();
