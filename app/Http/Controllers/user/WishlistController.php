@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\OrderItem;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +18,7 @@ class OrderController extends Controller
     }
     public function index()
     {
-
-        $orders = Order::latest()->get();
-        $order_items = OrderItem::latest()->get();
-
-        return view('backend.superadmin.order.index',compact('orders','order_items'));
+        //
     }
 
     /**

@@ -58,25 +58,70 @@
 					<div class="d-flex flex-column-fluid flex-center">
 						<!--begin::Signin-->
 						<div class="login-form login-signin">
+
+
 							<!--begin::Form-->
-							<form class="form" method="POST" action="{{ route('login') }}">
+							<form class="form" method="POST" action="{{ route('register') }}">
                                 @csrf
 								{{--  <!--begin::Title-->  --}}
 								<div class="pb-13 pt-lg-0 pt-5">
                                     <a href="{{route('welcome')}}" class="text-center pt-2">
                                         <img src="{{asset('resource/logo') }}/logo.png" class="max-h-75px" alt="" />
                                     </a>
-                                    <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Please Sign In Here</h3>
-                                    <span class="text-muted font-weight-bold font-size-h4">New Here?
-                                    <a href="{{route('register')}}" id="kt_login_signup" class="text-primary font-weight-bolder">Create an Account</a></span>
+                                    <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Please Sign Up Here</h3>
+                                    <span class="text-muted font-weight-bold font-size-h4">Already have a acount?
+                                        <a href="{{route('login')}}" id="kt_login_signup" class="text-primary font-weight-bolder">login</a></span>
 
 								</div>
-								<!--begin::Title-->
+                                <!--begin::Title-->
+
+                                <!--begin::Form group-->
+								<div class="form-group">
+									<label class="font-size-h6 font-weight-bolder text-dark">First Name</label>
+                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary  @error('firstName') is-invalid @enderror"
+                                    type="text" name="firstName" autocomplete="firstName" value="{{ old('firstName') }}" placeholder="Enter Your First Name"/>
+
+                                    @error('firstName')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+								</div>
+                                <!--end::Form group-->
+
+                                <!--begin::Form group-->
+								<div class="form-group">
+									<label class="font-size-h6 font-weight-bolder text-dark">Last Name</label>
+                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary  @error('lastName') is-invalid @enderror"
+                                    type="text" name="lastName" autocomplete="lastName" value="{{ old('lastName') }}" placeholder="Enter Your Last Name"/>
+
+                                    @error('lastName')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+								</div>
+                                <!--end::Form group-->
+
+                                <!--begin::Form group-->
+								<div class="form-group">
+									<label class="font-size-h6 font-weight-bolder text-dark">User Name</label>
+                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary  @error('username') is-invalid @enderror"
+                                    type="text" name="username" autocomplete="username" value="{{ old('username') }}" placeholder="Enter Your User Name"/>
+
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+								</div>
+								<!--end::Form group-->
+
 								<!--begin::Form group-->
 								<div class="form-group">
 									<label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                     <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary @error('email') is-invalid @enderror"
-                                    type="email" name="email" autocomplete="email" value="{{ old('email') }}"/>
+                                    type="email" name="email" autocomplete="email" value="{{ old('email') }}" placeholder="Enter Your Email"/>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -91,7 +136,22 @@
 										<label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
 
 									</div>
-                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary @error('password') is-invalid @enderror" type="password" name="password" autocomplete="off" />
+                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary @error('password') is-invalid @enderror" type="password" name="password" autocomplete="off" placeholder="Enter Your Password"/>
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+								</div>
+                                <!--end::Form group-->
+
+                                <!--begin::Form group-->
+								<div class="form-group">
+									<div class="d-flex justify-content-between mt-n5">
+										<label class="font-size-h6 font-weight-bolder text-dark pt-5">Confirm Password</label>
+
+									</div>
+                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border border-primary @error('password') is-invalid @enderror" type="password" name="password_confirmation" autocomplete="off" placeholder="Enter Your Password Again"/>
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -99,16 +159,11 @@
                                 @enderror
 								</div>
 								<!--end::Form group-->
+
 								<!--begin::Action-->
 								<div class="pb-lg-0 pb-5">
-                                    <button type="submit"  class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign In</button>
-
-                                    <a href="{{route('register')}}" class="btn btn-info font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign Up</a>
-
-
-
+									<button type="submit"  class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign Up</button>
                                 </div>
-
 								<!--end::Action-->
 							</form>
 							<!--end::Form-->

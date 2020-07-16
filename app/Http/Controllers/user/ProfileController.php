@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\user;
 
+use App\Category;
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\OrderItem;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +20,10 @@ class OrderController extends Controller
     }
     public function index()
     {
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
 
-        $orders = Order::latest()->get();
-        $order_items = OrderItem::latest()->get();
-
-        return view('backend.superadmin.order.index',compact('orders','order_items'));
+        return view('frontend.pages.user.profile',compact('categories','subcategories'));
     }
 
     /**

@@ -44,12 +44,10 @@
 						</h4>
 						<div class="tt-collapse-content">
 							<ul class="tt-list">
-								<li><a href="listing-collection.html">Women</a></li>
-								<li><a href="listing-collection.html">Men</a></li>
-								<li><a href="listing-collection.html">Accessories</a></li>
-								<li><a href="listing-collection.html">Shoes</a></li>
-								<li><a href="listing-collection.html">New Arrivals</a></li>
-								<li><a href="listing-collection.html">Clearence</a></li>
+                                @foreach ($categories as $item)
+                                    <li><a href="{{route('product.show.category',$item->id)}}">{{$item->name}}</a></li>
+                                @endforeach
+
 							</ul>
 						</div>
 					</div>
@@ -57,15 +55,15 @@
 				<div class="col-md-6 col-lg-2 col-xl-3">
 					<div class="tt-mobile-collapse">
 						<h4 class="tt-collapse-title">
-							MY ACCOUNT
+							Pages
 						</h4>
 						<div class="tt-collapse-content">
 							<ul class="tt-list">
-								<li><a href="account_order.html">Orders</a></li>
-								<li><a href="page404.html">Compare</a></li>
-								<li><a href="page404.html">Wishlist</a></li>
-								<li><a href="login.html">Log In</a></li>
-								<li><a href="create-account.html">Register</a></li>
+								<li><a href="{{route('about_us')}}">About Us</a></li>
+								<li><a href="{{route('contact_us')}}">Contact Us</a></li>
+                                <li><a href="{{route('faq')}}">Faq</a></li>
+								<li><a href="{{route('terms_and_condition')}}">Terms And Condition</a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -90,10 +88,10 @@
 							</h4>
 							<div class="tt-collapse-content">
 								<address>
-									<p><span>Address:</span> 2548 Broaddus Maple Court Avenue, Madisonville KY 4783, United States of America</p>
-									<p><span>Phone:</span> +777 2345 7885;  +777 2345 7886</p>
-									<p><span>Hours:</span> 7 Days a week from 10 am to 6 pm</p>
-									<p><span>E-mail:</span> <a href="mailto:info@mydomain.com">info@mydomain.com</a></p>
+									<p><span>Address:</span> </p>
+									<p><span>Phone:</span> </p>
+									<p><span>Hours:</span> </p>
+									<p><span>E-mail:</span> <a href="mailto:"></a></p>
 								</address>
 							</div>
 						</div>
@@ -108,15 +106,17 @@
 				<div class="tt-col-left">
 					<div class="tt-col-item tt-logo-col">
 						<!-- logo -->
-						<a class="tt-logo tt-logo-alignment" href="index.html">
-							<img  src="images/custom/logo.png" alt="">
+						<a class="tt-logo tt-logo-alignment mt-2" href="{{route('welcome')}}">
+							<img  src="{{asset('resource/logo')}}/logo.png" alt="">
 						</a>
 						<!-- /logo -->
 					</div>
 					<div class="tt-col-item">
 						<!-- copyright -->
 						<div class="tt-box-copyright">
-							&copy; Wokiee 2018. All Rights Reserved
+							&copy; Shahriar Ratul <script type="text/javascript">
+                                document.write(new Date().getFullYear());
+                              </script>. All Rights Reserved
 						</div>
 						<!-- /copyright -->
 					</div>
@@ -124,7 +124,7 @@
 				<div class="tt-col-right">
 					<div class="tt-col-item">
 						<!-- payment-list -->
-						<ul class="tt-payment-list">
+						{{--  <ul class="tt-payment-list">
 							<li><a href="page404.html"><span class="icon-Stripe"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span>
 			                </span></a></li>
 							<li><a href="page404.html"> <span class="icon-paypal-2">
@@ -142,7 +142,7 @@
 							<li><a href="page404.html"><span class="icon-american-express">
 			                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span>
 			                </span></a></li>
-						</ul>
+						</ul>  --}}
 						<!-- /payment-list -->
 					</div>
 				</div>

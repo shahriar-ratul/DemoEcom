@@ -340,6 +340,18 @@
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
 
+            <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('superadmin.order.index')}}" class="menu-link">
+                        <i class="menu-bullet menu-bullet-line">
+                            <span></span>
+                        </i>
+                        <span class="menu-text">All Order</span>
+                        <span class="menu-label">
+                            <span class="label label-rounded label-primary"></span>
+                        </span>
+
+                </a>
+            </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">

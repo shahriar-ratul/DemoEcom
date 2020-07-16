@@ -21,19 +21,25 @@ class WelcomeController extends Controller
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
         $banners = Banner::where('status','1')->latest()->get();
-        $latest_products = Product::where('product_status','1')->where('is_latest','1')->latest()->paginate(8);
-        $featured_products = Product::where('product_status','1')->where('is_featured','1')->latest()->paginate(8);
+        $latest_products = Product::where('product_status','1')->where('is_latest','1')->latest()->paginate(12);
+        $featured_products = Product::where('product_status','1')->where('is_featured','1')->latest()->paginate(12);
         return view('frontend.pages.welcome',compact('banners','latest_products','featured_products','categories','subcategories'));
     }
     public function admin()
     {
-        // return view('backend.layouts.app');
-        return redirect()->route('admin.login');
+        if (auth()->user()->role_id == 1) {
+            return redirect()->route('superadmin.dashboard');
+        }elseif (auth()->user()->role_id == 2) {
+            return redirect()->route('admin.dashboard');
+        } elseif (auth()->user()->role_id == 3) {
+            return redirect()->route('manager.dashboard');
+        } elseif (auth()->user()->role_id == 4) {
+            return redirect()->route('welcome');
+        }else{
+            return route('login');
+        }
     }
-    public function showAdminlogin()
-    {
-        return view('backend.auth.login');
-    }
+
     public function about_us(){
 
         $categories =Category::where('status','1')->get();
@@ -62,31 +68,36 @@ class WelcomeController extends Controller
 
     public function all_products(){
 
-        $products =Product::paginate(15);
+        $products =Product::where('product_status','1')->paginate(15);
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
-        return view('frontend.pages.product.products',compact('categories','subcategories','products'));
+        $count = count(Product::where('product_status','1')->get());
+        return view('frontend.pages.product.products',compact('categories','subcategories','products','count'));
     }
     public function single_product($id){
 
         $product =Product::find($id);
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
+
         return view('frontend.pages.product.single_product',compact('categories','subcategories','product'));
     }
     public function show_product_by_category($cat_id){
 
-        $products =Product::where('category_id',$cat_id)->where('status','1')->get();
+
+        $products =Product::where('category_id', 'like', '%"'.$cat_id.'"%')->where('product_status','1')->paginate(15);
+        $count = count(Product::where('category_id', 'like', '%"'.$cat_id.'"%')->where('product_status','1')->get());
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
-        return view('frontend.pages.product.products',compact('categories','subcategories','products'));
+        return view('frontend.pages.product.products',compact('categories','subcategories','products','count'));
     }
     public function show_product_by_subcategory($cat_id,$sub_cat_id){
 
-        $products =Product::where('category_id',$cat_id)->where('subcategory_id',$sub_cat_id)->where('status','1')->get();
+        $products = Product::where('category_id', 'like', '%"'.$cat_id.'"%')->where('subcategory_id', 'like', '%"'.$sub_cat_id.'"%')->where('product_status','1')->paginate(15);
+        $count = count( Product::where('category_id', 'like', '%"'.$cat_id.'"%')->where('subcategory_id', 'like', '%"'.$sub_cat_id.'"%')->where('product_status','1')->get());
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
-        return view('frontend.pages.product.products',compact('categories','subcategories','products'));
+        return view('frontend.pages.product.products',compact('categories','subcategories','products','count'));
     }
 
 

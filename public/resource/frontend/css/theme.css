@@ -15959,8 +15959,9 @@ html.edge .tt-portfolio-content figure:hover figcaption {
 /* input-counter */
 .tt-input-counter.style-01 {
   position: relative;
-  max-width: 132px;
-  min-width: 132px; }
+  /* max-width: 132px;
+  min-width: 132px;  */
+}
   .tt-input-counter.style-01 input {
     background: #f7f8fa;
     display: block;

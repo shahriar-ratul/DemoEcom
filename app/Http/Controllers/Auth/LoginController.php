@@ -37,7 +37,7 @@ class LoginController extends Controller
         } elseif (auth()->user()->role_id == 3) {
             return route('manager.dashboard');
         } elseif (auth()->user()->role_id == 4) {
-            return route('user.dashboard');
+            return route('welcome');
         }else{
             return route('login');
         }

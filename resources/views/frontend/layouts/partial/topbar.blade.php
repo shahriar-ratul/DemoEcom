@@ -9,12 +9,12 @@
 {{--    all categories--}}
     @foreach($categories as $category)
     <li>
-        <a href="">{{$category->name}}</a>
+        <a href="{{route('product.show.category',$category->id)}}">{{$category->name}}</a>
         <ul>
             @foreach($subcategories as $subcategory)
                 @if ($category->id == $subcategory->category_id)
                 <li>
-                      <a href=""> {{$subcategory->name}}</a>
+                      <a href="{{route('product.show.subcategory',[$category->id,$subcategory->id])}}"> {{$subcategory->name}}</a>
                 </li>
                 @endif
             @endforeach
@@ -86,14 +86,14 @@
                         </li>
 
                             <li class="dropdown tt-megamenu-col-02 {{Request::is('about-us') ? 'selected': '' }}">
-                                <a href="{{route('about_us')}}">All Categories</a>
+                                <a href="{{route('product.show')}}">All Categories</a>
 
                                 <div class="dropdown-menu">
                                     <div class="row tt-col-list">
                                         @foreach($categories as $category)
                                         <div class="col">
                                             <h6 class="tt-title-submenu">
-                                                <a href="">{{$category->name}}</a>
+                                                <a href="{{route('product.show.category',[$category->id])}}">{{$category->name}}</a>
                                             </h6>
                                             @foreach($subcategories as $subcategory)
                                                 @if ($category->id == $subcategory->category_id)
@@ -101,7 +101,7 @@
                                                 <ul class="tt-megamenu-submenu">
 
                                                     <li>
-                                                        <a href="">{{$subcategory->name}}</a>
+                                                        <a href="{{route('product.show.subcategory',[$category->id,$subcategory->id])}}">{{$subcategory->name}}</a>
                                                     </li>
 
                                                 </ul>
@@ -200,47 +200,39 @@
                     </div>
                     <div class="tt-dropdown-inner">
                         <ul>
-                            @auth
-                                <li><a href="{{url('/admin')}}"><i class="icon-f-77"></i>Sign Out</a></li>
-                            @endauth
-                            <li><a href="{{route('login')}}"><i class="icon-f-94"></i>Login</a></li>
-                            <li><a href=""><i class="icon-n-072"></i>Wishlist</a></li>
-                            <li><a href="compare.html"><i class="icon-n-08"></i>Compare</a></li>
-                            <li><a href="page404.html"><i class="icon-f-68"></i>Check Out</a></li>
-                            <li><a href="login.html"><i class="icon-f-76"></i>Sign In</a></li>
 
-                            <li><a href="create-account.html"><i class="icon-f-94"></i>Register</a></li>
+
+
+                            @auth
+                                @if(Auth::user()->role->id==1 || Auth::user()->role->id==2 || Auth::user()->role->id==3)
+                                 <li><a href="{{url('/admin')}}"><i class="icon-f-77"></i>Admin</a></li>
+                                @endif
+                            <li><a href="{{route('user.profile.index')}}"><i class="icon-f-94"></i>My profile</a></li>
+                            <li><a href="{{route('user.order.index')}}"><i class="icon-f-94"></i>My Order list</a></li>
+                            <li><a href="{{route('login')}}"><i class="icon-f-94"></i>My Wish list</a></li>
+                            <li><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"><i class="icon-f-94"></i>Logout</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            @endauth
+
+                            @guest
+                                <li><a href="{{route('login')}}"><i class="icon-f-94"></i>Login</a></li>
+                                @if (Route::has('register'))
+                                <li><a href="{{route('register')}}"><i class="icon-f-94"></i>Register</a></li>
+                                @endif
+
+                            @endguest
+
+
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /tt-account -->
-        <!-- tt-langue and tt-currency -->
-        <div class="tt-desctop-parent-multi tt-parent-box">
-            <div class="tt-multi-obj tt-dropdown-obj">
-                <button class="tt-dropdown-toggle" data-tooltip="Settings" data-tposition="bottom"><i class="icon-f-79"></i></button>
-                <div class="tt-dropdown-menu">
-                    <div class="tt-mobile-add">
-                        <button class="tt-close">Close</button>
-                    </div>
-                    <div class="tt-dropdown-inner">
-                        <ul>
-                            <li class="active"><a href="#">English</a></li>
-                            <li><a href="#">Deutsch</a></li>
-                            <li><a href="#">Español</a></li>
-                            <li><a href="#">Français</a></li>
-                        </ul>
-                        <ul>
-                            <li class="active"><a href="#"><i class="icon-h-59"></i>USD - US Dollar</a></li>
-                            <li><a href="#"><i class="icon-h-60"></i>EUR - Euro</a></li>
-                            <li><a href="#"><i class="icon-h-61"></i>GBP - British Pound Sterling</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /tt-langue and tt-currency -->
+
     </div>
 </div>
 </div>

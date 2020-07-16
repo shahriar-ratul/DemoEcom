@@ -40,48 +40,11 @@
 </div>
 
 
-<div class="container-indent0">
-    <div class="container-fluid">
-        <div class="row tt-layout-promo-box">
-
-            @foreach($latest_products as $product)
-            <div class="col-sm-12 col-md-6">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#" class="tt-promo-box tt-one-child hover-type-2">
-                            <img src="{{ asset('resource/frontend') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-01.jpg" alt="">
-                            <div class="tt-description">
-                                <div class="tt-description-wrapper">
-                                    <div class="tt-background"></div>
-                                    <div class="tt-title-small">SALE</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="tt-promo-box tt-one-child hover-type-2">
-                            <img src="{{ asset('resource/frontend') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/promo/index-promo-img-02.jpg" alt="">
-                            <div class="tt-description">
-                                <div class="tt-description-wrapper">
-                                    <div class="tt-background"></div>
-                                    <div class="tt-title-small">NEW</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-            @endforeach
-        </div>
-    </div>
-</div>
-
-
 <div class="container-indent">
     <div class="container container-fluid-custom-mobile-padding">
         <div class="tt-block-title">
-            <h1 class="tt-title">TRENDING</h1>
-            <div class="tt-description">TOP VIEW IN THIS WEEK</div>
+            <h1 class="tt-title">TRENDING PRODUCTS</h1>
+            <div class="tt-description">TOP PRODUCT IN CURRENT TIME</div>
         </div>
         <div class="row tt-layout-product-item">
             @foreach($latest_products as $product)
@@ -90,50 +53,54 @@
                     <div class="tt-image-box">
                         <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
                         <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
-                        <a href="#" class="tt-btn-compare" data-tooltip="Add to Compare" data-tposition="left"></a>
-                        <a href="product.html">
-                            <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/product/product-03.jpg" alt=""></span>
-                            <span class="tt-img-roll-over"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/product/product-03-02.jpg" alt=""></span>
+
+                        <a href="{{route('product.show.details',$product->id)}}">
+                            <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image}}" alt=""></span>
+                            <span class="tt-img-roll-over"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image_1}}" alt=""></span>
                             <span class="tt-label-location">
-                                <span class="tt-label-new">New</span>
+                                <span class="tt-label-new">featured</span>
                             </span>
                         </a>
                     </div>
                     <div class="tt-description">
                         <div class="tt-row">
                             <ul class="tt-add-info">
-                                <li><a href="#">T-SHIRTS</a></li>
+                                {{--  <li><a href="">{{$product->product_name}}</a></li>  --}}
                             </ul>
-                            <div class="tt-rating">
+                            {{--  <div class="tt-rating">
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star"></i>
                                 <i class="icon-star-half"></i>
                                 <i class="icon-star-empty"></i>
-                            </div>
+                            </div>  --}}
                         </div>
-                        <h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
+                        <h2 class="tt-title"><a href="{{route('product.show.details',$product->id)}}">{{$product->product_name}}</a></h2>
                         <div class="tt-price">
-                            $12
+                           {{$product->product_price}} BDT
                         </div>
                         <div class="tt-option-block">
                             <ul class="tt-options-swatch js-change-img">
-                                <li class="active"><a href="#" class="options-color-img" data-src="{{ asset('resource/frontend/') }}/images/product/product-03.jpg" data-src-hover="{{ asset('resource/frontend/') }}/images/product/product-03-02.jpg" data-tooltip="Blue" data-tposition="top"></a></li>
 
-                                <li><a href="#" class="options-color-img" data-src="{{ asset('resource/frontend/') }}/images/product/product-03-05.jpg" data-src-hover="{{ asset('resource/frontend/') }}/images/product/product-03-05-hover.jpg" data-tooltip="Light Blue" data-tposition="top"></a></li>
-                                <li><a href="#" class="options-color-img" data-src="{{ asset('resource/frontend/') }}/images/product/product-03-06.jpg" data-src-hover="{{ asset('resource/frontend/') }}/images/product/product-03-06-hover.jpg" data-tooltip="Green" data-tposition="top"></a></li>
-                                <li><a href="#" class="options-color-img" data-src="{{ asset('resource/frontend/') }}/images/product/product-03-07.jpg" data-src-hover="{{ asset('resource/frontend/') }}/images/product/product-03-07-hover.jpg" data-tooltip="Pink" data-tposition="top"></a></li>
-                                <li><a href="#" class="options-color-img" data-src="{{ asset('resource/frontend/') }}/images/product/product-03-08.jpg" data-src-hover="{{ asset('resource/frontend/') }}/images/product/product-03-08-hover.jpg" data-tooltip="Orange" data-tposition="top"></a></li>
+                                <li class="active"><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image}}" data-src-hover="{{ asset('images') }}/{{$product->product_image}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_1}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_1}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_2}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_2}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_3}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_3}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_4}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_4}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
                             </ul>
                         </div>
                         <div class="tt-product-inside-hover">
                             <div class="tt-row-btn">
-                                <a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+                                <a href="{{route('cart.add',$product->id)}}" class="tt-btn-addtocart thumbprod-button-bg" >ADD TO CART</a>
                             </div>
                             <div class="tt-row-btn">
                                 <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
                                 <a href="#" class="tt-btn-wishlist"></a>
-                                <a href="#" class="tt-btn-compare"></a>
                             </div>
                         </div>
                     </div>
@@ -149,59 +116,72 @@
 <div class="container-indent">
     <div class="container container-fluid-custom-mobile-padding">
         <div class="tt-block-title">
-            <h2 class="tt-title">BEST SELLER</h2>
-            <div class="tt-description">TOP SALE IN THIS WEEK</div>
+            <h2 class="tt-title">NEW PRODUCT</h2>
+            <div class="tt-description">NEW PRODUCT IN THIS WEEK</div>
         </div>
         <div class="row tt-layout-product-item">
 
+            @foreach ($latest_products as $item)
 
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="tt-product thumbprod-center">
+                <div class="tt-product thumbprod-center product-nohover">
                     <div class="tt-image-box">
                         <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
                         <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
-                        <a href="#" class="tt-btn-compare" data-tooltip="Add to Compare" data-tposition="left"></a>
-                        <a href="product.html">
-                            <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/product/product-16.jpg" alt=""></span>
-                            <span class="tt-img-roll-over"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('resource/frontend/') }}/images/product/product-16-01.jpg" alt=""></span>
+
+                        <a href="{{route('product.show.details',$product->id)}}">
+                            <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image}}" alt=""></span>
+                            <span class="tt-img-roll-over"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image_1}}" alt=""></span>
+                            <span class="tt-label-location">
+                                <span class="tt-label-new">new</span>
+                            </span>
                         </a>
-                        <div class="tt-countdown_box">
-                            <div class="tt-countdown_inner">
-                                <div class="tt-countdown"
-                                    data-date="2019-04-14"
-                                    data-year="Yrs"
-                                    data-month="Mths"
-                                    data-week="Wk"
-                                    data-day="Day"
-                                    data-hour="Hrs"
-                                    data-minute="Min"
-                                    data-second="Sec"></div>
-                            </div>
-                        </div>
                     </div>
                     <div class="tt-description">
                         <div class="tt-row">
                             <ul class="tt-add-info">
-                                <li><a href="#">T-SHIRTS</a></li>
+                                {{--  <li><a href="">{{$product->product_name}}</a></li>  --}}
                             </ul>
+                            {{--  <div class="tt-rating">
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-half"></i>
+                                <i class="icon-star-empty"></i>
+                            </div>  --}}
                         </div>
-                        <h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
+                        <h2 class="tt-title"><a href="{{route('product.show.details',$product->id)}}">{{$product->product_name}}</a></h2>
                         <div class="tt-price">
-                            $24
+                           {{$product->product_price}} BDT
+                        </div>
+                        <div class="tt-option-block">
+                            <ul class="tt-options-swatch js-change-img">
+
+                                <li class="active"><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image}}" data-src-hover="{{ asset('images') }}/{{$product->product_image}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_1}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_1}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_2}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_2}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_3}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_3}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                                <li><a href="#" class="options-color-img" data-src="{{ asset('images') }}/{{$product->product_image_4}}" data-src-hover="{{ asset('images') }}/{{$product->product_image_4}}" data-tooltip="{{$product->product_name}}" data-tposition="top"></a></li>
+
+                            </ul>
                         </div>
                         <div class="tt-product-inside-hover">
                             <div class="tt-row-btn">
-                                <a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+                                <a href="{{route('cart.add',$product->id)}}" class="tt-btn-addtocart thumbprod-button-bg" >ADD TO CART</a>
                             </div>
                             <div class="tt-row-btn">
                                 <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
                                 <a href="#" class="tt-btn-wishlist"></a>
-                                <a href="#" class="tt-btn-compare"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
 
         </div>
     </div>
@@ -217,7 +197,7 @@
                     </div>
                     <div class="tt-col-description">
                         <h4 class="tt-title">FREE SHIPPING</h4>
-                        <p>Free shipping on all US order or order above $99</p>
+                        <p>Free shipping on dhaka over 1000 BDT Order</p>
                     </div>
                 </a>
             </div>
@@ -238,13 +218,107 @@
                         <i class="icon-e-09"></i>
                     </div>
                     <div class="tt-col-description">
-                        <h4 class="tt-title">30 DAYS RETURN</h4>
-                        <p>Simply return it within 24 days for an exchange.</p>
+                        <h4 class="tt-title">7 DAYS RETURN</h4>
+                        <p>Simply return it within 3 days for an exchange.</p>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- modal (quickViewModal) -->
+<div class="modal  fade"  id="ModalquickView" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+
+
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+				<div class="tt-modal-quickview desctope">
+					<div class="row">
+						<div class="col-12 col-md-5 col-lg-6">
+							<div class="tt-mobile-product-slider arrow-location-center">
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image}}" alt=""></div>
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_1}}" alt=""></div>
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_2}}" alt=""></div>
+                                <div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_3}}" alt=""></div>
+                                <div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_4}}" alt=""></div>
+                                <div>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{$product->product_video_link}}" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+
+							</div>
+						</div>
+						<div class="col-12 col-md-7 col-lg-6">
+							<div class="tt-product-single-info">
+								<div class="tt-add-info">
+									<ul>
+										<li><span>SKU:</span> {{$product->product_sku}}</li>
+										<li><span>Availability:</span> {{$product->product_qty}} in Stock</li>
+									</ul>
+								</div>
+								<h2 class="tt-title">{{$product->product_name}}</h2>
+								<div class="tt-price">
+									<span class="new-price">{{$product->product_price}} BDT</span>
+
+								</div>
+
+								<div class="tt-wrapper">
+
+								</div>
+
+
+								<div class="tt-wrapper">
+									<div class="tt-row-custom-01">
+                                        <div class="container">
+                                        <form action="{{route('cart.item.add',$product->id)}}" method="POST">
+                                            @csrf
+										<div class="col-item">
+											<div class="tt-input-counter style-01">
+												<span class="minus-btn"></span>
+												<input type="text" value="1" name="quantity" size="5">
+												<span class="plus-btn"></span>
+											</div>
+										</div>
+										<div class="col-item">
+                                            <button type="submit" class="btn btn-lg"><i class="icon-f-39"></i>ADD TO CART</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- modalVideoProduct -->
+<div class="modal fade"  id="modalVideoProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-video">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-video-content">
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 

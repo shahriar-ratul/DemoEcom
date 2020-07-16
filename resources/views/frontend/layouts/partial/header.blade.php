@@ -19,8 +19,14 @@
 
     @toastr_css
     <style>
+        body{
+            color:#000 !important;
+        }
+        .form-default .form-control {
+            color:#000 !important;
+        }
         .tt-desctop-menu .tt-megamenu-submenu > li > a {
-            color: #777777;
+            color: #000000;
             font-size: 14px;
             line-height: 22px;
             display: inline-block;

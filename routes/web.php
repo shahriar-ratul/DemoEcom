@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// User::latest()->get();
+// User::oldest()->get();
+// $lastUpdatedUser = User::newest('updated_at')->first();
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
+
 //all frontend route
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about-us', 'WelcomeController@about_us')->name('about_us');
@@ -32,6 +40,7 @@ Route::prefix('product')->group(function (){
 });
 
 Route::prefix('cart')->group(function(){
+    Route::post('/add/item/{id}','CartController@cart_add')->name('cart.item.add'); // All item to cart
     Route::get('/add/{id}','CartController@add')->name('cart.add'); // All item to cart
     Route::get('/items','CartController@index')->name('cart.index'); // All cart item
     Route::post('/update','CartController@update')->name('cart.update'); // Update cart item
@@ -42,7 +51,9 @@ Route::prefix('cart')->group(function(){
 
 Route::prefix('order')->group(function(){
     Route::resource('order', 'OrderController');
+    Route::get('/complete/{id}', 'OrderController@thankyou')->name('complete.order');
 });
+
 
 
 
@@ -51,7 +62,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'WelcomeController@admin')->name('admin');
-Route::get('/admin/login', 'WelcomeController@showAdminlogin')->name('admin.login');
 
 
 // superadmin Routes
@@ -107,6 +117,9 @@ Route::group(['as'=>'manager.','prefix'=>'manager','middleware'=>['manager','aut
 });
 
 // User Routes
-Route::group(['as'=>'user.','prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'user'],function() {
+Route::group(['as'=>'user.','prefix'=>'user','middleware'=>['auth'],'namespace'=>'user'],function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('profile', 'ProfileController') ;
+    Route::resource('order', 'OrderController') ;
+    Route::resource('wishlist', 'WishlistController') ;
 });

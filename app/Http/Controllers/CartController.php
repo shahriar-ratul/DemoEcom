@@ -20,6 +20,8 @@ class CartController extends Controller
     {
         $this->middleware('auth');
     }
+
+
     public function index()
     {
 
@@ -30,6 +32,21 @@ class CartController extends Controller
         $subTotal = \Cart::session(auth()->id())->getSubTotal();
         $total = \Cart::session(auth()->id())->getTotal();
         return view('frontend.pages.cart.index', compact('cartItems','categories','subcategories','subTotal','total'));
+    }
+    public function cart_add(Request $request,$id){
+        // return $request;
+        $product = Product::find($id);
+        //        dd($product);
+                \Cart::session(auth()->id())->add(array(
+                    'id' => $product->id,
+                    'name' => $product->product_name,
+                    'price' => $product->product_price,
+                    'quantity' => $request->quantity,
+                    'attributes' => array(),
+                    'associatedModel' => $product
+                ));
+
+                return redirect()->route('cart.index');
     }
 
     public function add($id){

@@ -22,56 +22,56 @@ class ManufacturerSeeder extends Seeder
         ]);
 
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'New Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'Dhaka Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'Sk Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'KK Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'Mirpur Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'Desi Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'HD Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);
         Manufacturer::create([
-            'name' => 'GS Mart',
+            'name' => 'WS Mart',
             'slug' => Str::slug('GS Mart'),
             'status' => 1,
             'created_by' => 1,

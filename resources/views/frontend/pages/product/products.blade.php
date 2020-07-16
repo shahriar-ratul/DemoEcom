@@ -31,203 +31,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">SORT BY</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-filter-list">
-                                    <li class="active">
-                                        <a href="#">Shirts &amp; Tops</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">XS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">White</a>
-                                    </li>
-                                </ul>
-                                <a href="#" class="btn-link-02">Clear All</a>
-                            </div>
-                        </div>
+
                         <div class="tt-collapse open">
                             <h3 class="tt-collapse-title">PRODUCT CATEGORIES</h3>
                             <div class="tt-collapse-content">
                                 <ul class="tt-list-row">
-                                    <li class="active"><a href="#">Dresses</a></li>
-                                    <li><a href="#">Shirts &amp; Tops</a></li>
-                                    <li><a href="#">Polo Shirts</a></li>
-                                    <li><a href="#">Sweaters</a></li>
-                                    <li><a href="#">Blazers &amp; Vests</a></li>
-                                    <li><a href="#">Jackets &amp; Outerwear</a></li>
-                                    <li><a href="#">Activewear</a></li>
-                                    <li><a href="#">Pants</a></li>
-                                    <li><a href="#">Jumpsuits &amp; Shorts</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">Skirts</a></li>
-                                    <li><a href="#">Swimwear</a></li>
+                                    @foreach ($categories as $item)
+                                        <li><a href="{{route('product.show.category',$item->id)}}">{{$item->name}}</a></li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                         </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">FILTER BY PRICE</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-list-row">
-                                    <li class="active"><a href="#">$0 — $50</a></li>
-                                    <li><a href="#">$50 — $100</a></li>
-                                    <li><a href="#">$100 — $150</a></li>
-                                    <li><a href="#">$150 —  $200</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">FILTER BY SIZE</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-options-swatch options-middle">
-                                    <li><a href="#">4</a></li>
-                                    <li class="active"><a href="#">6</a></li>
-                                    <li><a href="#">8</a></li>
-                                    <li><a href="#">10</a></li>
-                                    <li><a href="#">12</a></li>
-                                    <li><a href="#">14</a></li>
-                                    <li><a href="#">16</a></li>
-                                    <li><a href="#">18</a></li>
-                                    <li><a href="#">20</a></li>
-                                    <li><a href="#">22</a></li>
-                                    <li><a href="#">24</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">FILTER BY COLOR</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-options-swatch options-middle">
-                                    <li><a class="options-color tt-border tt-color-bg-08" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-09" href="#"></a></li>
-                                    <li class="active"><a class="options-color tt-color-bg-10" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-11" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-12" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-13" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-14" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-15" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-16" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-17" href="#"></a></li>
-                                    <li><a class="options-color tt-color-bg-18" href="#"></a></li>
-                                    <li><a class="options-color" href="#">
-									<span class="swatch-img">
-										<img src="images/custom/texture-img-01.jpg" alt="">
-									</span>
-                                            <span class="swatch-label color-black"></span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">VENDOR</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-list-row">
-                                    <li><a href="#">Levis</a></li>
-                                    <li><a href="#">Gap</a></li>
-                                    <li><a href="#">Polo</a></li>
-                                    <li><a href="#">Lacoste</a></li>
-                                    <li><a href="#">Guess</a></li>
-                                </ul>
-                                <a href="#" class="btn-link-02">+ More</a>
-                            </div>
-                        </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">SALE PRODUCTS</h3>
-                            <div class="tt-collapse-content">
-                                <div class="tt-aside">
-                                    <a class="tt-item" href="product.html">
-                                        <div class="tt-img">
-                                            <span class="tt-img-default"><img src="images/product/product-01.jpg" alt=""></span>
-                                            <span class="tt-img-roll-over"><img src="images/product/product-01-02.jpg" alt=""></span>
-                                        </div>
-                                        <div class="tt-content">
-                                            <h6 class="tt-title">Flared Shift Dress</h6>
-                                            <div class="tt-price">
-                                                <span class="sale-price">$14</span>
-                                                <span class="old-price">$24</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="tt-item" href="product.html">
-                                        <div class="tt-img">
-                                            <span class="tt-img-default"><img src="images/product/product-02.jpg" alt=""></span>
-                                            <span class="tt-img-roll-over"><img src="images/product/product-02-02.jpg" alt=""></span>
-                                        </div>
-                                        <div class="tt-content">
-                                            <h6 class="tt-title">Flared Shift Dress</h6>
-                                            <div class="tt-price">
-                                                <span class="sale-price">$14</span>
-                                                <span class="old-price">$24</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="tt-item" href="product.html">
-                                        <div class="tt-img">
-                                            <span class="tt-img-default"><img src="images/product/product-03.jpg" alt=""></span>
-                                            <span class="tt-img-roll-over"><img src="images/product/product-03-02.jpg" alt=""></span>
-                                        </div>
-                                        <div class="tt-content">
-                                            <h6 class="tt-title">Flared Shift Dress</h6>
-                                            <div class="tt-price">
-                                                <span class="sale-price">$14</span>
-                                                <span class="old-price">$24</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tt-collapse open">
-                            <h3 class="tt-collapse-title">TAGS</h3>
-                            <div class="tt-collapse-content">
-                                <ul class="tt-list-inline">
-                                    <li><a href="#">Dresses</a></li>
-                                    <li><a href="#">Shirts &amp; Tops</a></li>
-                                    <li><a href="#">Polo Shirts</a></li>
-                                    <li><a href="#">Sweaters</a></li>
-                                    <li><a href="#">Blazers</a></li>
-                                    <li><a href="#">Vests</a></li>
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Outerwear</a></li>
-                                    <li><a href="#">Activewear</a></li>
-                                    <li><a href="#">Pants</a></li>
-                                    <li><a href="#">Jumpsuits</a></li>
-                                    <li><a href="#">Shorts</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">Skirts</a></li>
-                                    <li><a href="#">Swimwear</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-content-aside">
-                            <a href="listing-left-column.html" class="tt-promo-03">
-                                <img src="images/custom/listing_promo_img_07.jpg" alt="">
-                            </a>
-                        </div>
+
+
                     </div>
                     <div class="col-md-12 col-lg-9 col-xl-9">
                         <div class="content-indent container-fluid-custom-mobile-padding-02">
                             <div class="tt-filters-options">
                                 <h1 class="tt-title">
-                                    Product Found <span class="tt-title-total">()</span>
+                                    Product Found : <span class="tt-title-total">{{$count}}</span>
                                 </h1>
                                 <div class="tt-btn-toggle">
-                                    <a href="#">FILTER</a>
+                                    <a href="#">Category</a>
                                 </div>
                                 <div class="tt-sort">
-                                    <select>
-                                        <option value="Default Sorting">Default Sorting</option>
-                                        <option value="Default Sorting">Default Sorting 02</option>
-                                        <option value="Default Sorting">Default Sorting 03</option>
-                                    </select>
-                                    <select>
-                                        <option value="Show">Show</option>
-                                        <option value="9">9</option>
-                                        <option value="16">16</option>
-                                        <option value="32">32</option>
-                                    </select>
+
                                 </div>
                                 <div class="tt-quantity">
                                     <a href="#" class="tt-col-one" data-value="tt-col-one"></a>
@@ -289,6 +118,104 @@
             </div>
         </div>
     </div>
+
+    @if (count($products) > 0)
+
+
+    <!-- modal (quickViewModal) -->
+<div class="modal  fade"  id="ModalquickView" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+
+
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+				<div class="tt-modal-quickview desctope">
+					<div class="row">
+						<div class="col-12 col-md-5 col-lg-6">
+							<div class="tt-mobile-product-slider arrow-location-center">
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image}}" alt=""></div>
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_1}}" alt=""></div>
+								<div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_2}}" alt=""></div>
+                                <div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_3}}" alt=""></div>
+                                <div><img src="{{asset('/resource/frontend')}}/images/loader.svg" data-src="{{asset('/images')}}/{{$product->product_image_4}}" alt=""></div>
+                                <div>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{$product->product_video_link}}" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+
+							</div>
+						</div>
+						<div class="col-12 col-md-7 col-lg-6">
+							<div class="tt-product-single-info">
+								<div class="tt-add-info">
+									<ul>
+										<li><span>SKU:</span> {{$product->product_sku}}</li>
+										<li><span>Availability:</span> {{$product->product_qty}} in Stock</li>
+									</ul>
+								</div>
+								<h2 class="tt-title">{{$product->product_name}}</h2>
+								<div class="tt-price">
+									<span class="new-price">{{$product->product_price}} BDT</span>
+
+								</div>
+
+								<div class="tt-wrapper">
+
+								</div>
+
+
+								<div class="tt-wrapper">
+									<div class="tt-row-custom-01">
+                                        <div class="container">
+                                        <form action="{{route('cart.item.add',$product->id)}}" method="POST">
+                                            @csrf
+										<div class="col-item">
+											<div class="tt-input-counter style-01">
+												<span class="minus-btn"></span>
+												<input type="text" value="1" name="quantity" size="5">
+												<span class="plus-btn"></span>
+											</div>
+										</div>
+										<div class="col-item">
+                                            <button type="submit" class="btn btn-lg"><i class="icon-f-39"></i>ADD TO CART</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endif
+
+
+<!-- modalVideoProduct -->
+<div class="modal fade"  id="modalVideoProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-video">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-video-content">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 
 

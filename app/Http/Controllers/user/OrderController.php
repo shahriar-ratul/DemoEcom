@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\user;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Order;
-use App\OrderItem;
+use App\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -20,11 +22,11 @@ class OrderController extends Controller
     }
     public function index()
     {
+        $orders = Order::where('user_id',Auth::user()->id)->get();
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
 
-        $orders = Order::latest()->get();
-        $order_items = OrderItem::latest()->get();
-
-        return view('backend.superadmin.order.index',compact('orders','order_items'));
+        return view('frontend.pages.user.order',compact('orders','categories','subcategories'));
     }
 
     /**

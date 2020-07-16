@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Order;
+use App\OrderItem;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,16 +105,29 @@ class OrderController extends Controller
             $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
         }
 
+         $order_id = $order->id;
 
 
         //empty cart
         \Cart::session(auth()->id())->clear();
         //send email to customer
 
-        toastr()->success('You Have been Order Successfuly');
-        return redirect()->route('welcome');
+
+        return redirect()->route('complete.order',[$order_id]);
 
     }
+
+    public function thankyou($id)
+    {
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+        $order = Order::find($id);
+        $order_items = OrderItem::where('order_id',$id)->get();
+
+        toastr()->success('You Have been Order Successfuly');
+        return view('frontend.pages.cart.thank_you', compact('categories','subcategories','order','order_items'));
+    }
+
 
     /**
      * Display the specified resource.
