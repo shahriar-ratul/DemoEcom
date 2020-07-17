@@ -94,9 +94,9 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Products</span>
-                                {{--  <span class="menu-label">
-                                    <span class="label label-rounded label-primary">6</span>
-                                </span>  --}}
+                                <span class="menu-label">
+                                    <span class="label label-rounded label-primary">{{count(App\Product::get())}}</span>
+                                </span>
                                 <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu">
@@ -108,6 +108,9 @@
                                                         <span></span>
                                                 </i>
                                                 <span class="menu-text">All Products</span>
+                                                <span class="menu-label">
+                                                    <span class="label label-rounded label-primary">{{count(App\Product::get())}}</span>
+                                                </span>
                                             </a>
                                     </li>
 
@@ -129,9 +132,9 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Categories</span>
-                                {{--  <span class="menu-label">
-                                    <span class="label label-rounded label-primary">6</span>
-                                </span>  --}}
+                                <span class="menu-label">
+                                    <span class="label label-rounded label-primary">{{count(App\Category::get())}}</span>
+                                </span>
                                 <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu">
@@ -143,6 +146,10 @@
                                                         <span></span>
                                                 </i>
                                                 <span class="menu-text">All Categories</span>
+                                                <span class="menu-label">
+                                                    <span class="label label-rounded label-primary">{{count(App\Category::get())}}</span>
+                                                </span>
+
                                             </a>
                                     </li>
 
@@ -165,6 +172,9 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Sub Category</span>
+                                <span class="menu-label">
+                                    <span class="label label-rounded label-primary">{{count(App\SubCategory::get())}}</span>
+                                </span>
 
                                 <i class="menu-arrow"></i>
                         </a>
@@ -177,6 +187,9 @@
                                                     <span></span>
                                             </i>
                                             <span class="menu-text">All Sub Categories</span>
+                                            <span class="menu-label">
+                                                <span class="label label-rounded label-primary">{{count(App\SubCategory::get())}}</span>
+                                            </span>
                                         </a>
                                 </li>
 
@@ -200,6 +213,9 @@
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Manufacturer</span>
+                                <span class="menu-label">
+                                    <span class="label label-rounded label-primary">{{count(App\Manufacturer::get())}}</span>
+                                </span>
 
                                 <i class="menu-arrow"></i>
                         </a>
@@ -212,6 +228,9 @@
                                                     <span></span>
                                             </i>
                                             <span class="menu-text">All Manufacturer</span>
+                                            <span class="menu-label">
+                                                <span class="label label-rounded label-primary">{{count(App\Manufacturer::get())}}</span>
+                                            </span>
                                         </a>
                                 </li>
 
@@ -260,8 +279,8 @@
                         </i>
                         <span class="menu-text">Banner</span>
                         <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
+                            <span class="label label-rounded label-primary">{{count(App\Banner::get())}}</span>
+                        </span>
 
                         <i class="menu-arrow"></i>
                     </a>
@@ -274,6 +293,9 @@
                                         <span></span>
                                     </i>
                                     <span class="menu-text">All Banner List</span>
+                                    <span class="menu-label">
+                                        <span class="label label-rounded label-primary">{{count(App\Banner::get())}}</span>
+                                    </span>
                                 </a>
                             </li>
 
@@ -288,33 +310,6 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-
-
-
-                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
-                        <i class="menu-bullet menu-bullet-line">
-                            <span></span>
-                        </i>
-                        <span class="menu-text">Complete Order</span>
-                        <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
-
-                    </a>
-                </li>
-                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
-                        <i class="menu-bullet menu-bullet-line">
-                            <span></span>
-                        </i>
-                        <span class="menu-text">Rejected Order</span>
-                        <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
-
-                    </a>
                 </li>
             </ul>
         </div>
@@ -347,43 +342,55 @@
                         </i>
                         <span class="menu-text">All Order</span>
                         <span class="menu-label">
-                            <span class="label label-rounded label-primary"></span>
+                            <span class="label label-rounded label-primary">{{count(App\Order::get())}}</span>
                         </span>
 
                 </a>
             </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.order.active')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">Active Order</span>
                             <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
+                                <span class="label label-rounded label-primary">{{count(App\Order::whereIn('status',['pending','pending'])->get())}}</span>
                             </span>
 
                     </a>
                 </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.order.completed')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">Complete Order</span>
                             <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
+                                <span class="label label-rounded label-primary">{{count(App\Order::where('status','completed')->get())}}</span>
                             </span>
 
                     </a>
                 </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.order.rejected')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">Rejected Order</span>
                             <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
+                                <span class="label label-rounded label-primary">{{count(App\Order::where('status','declined')->get())}}</span>
+                            </span>
+
+                    </a>
+                </li>
+                <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="{{route('superadmin.order.canceled')}}" class="menu-link">
+                            <i class="menu-bullet menu-bullet-line">
+                                <span></span>
+                            </i>
+                            <span class="menu-text">Canceled Order</span>
+                            <span class="menu-label">
+                                <span class="label label-rounded label-primary">{{count(App\Order::where('status','canceled')->get())}}</span>
                             </span>
 
                     </a>
@@ -413,38 +420,36 @@
         <ul class="menu-subnav">
 
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.user.customer')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">All Customer</span>
                             <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
+                                <span class="label label-rounded label-primary">{{count(App\User::where('role_id','4')->get())}}</span>
                             </span>
+
 
                     </a>
                 </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.user.index')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">All Management User</span>
                             <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
+                                <span class="label label-rounded label-primary">{{count(App\User::whereIn('role_id',[1,2,3])->get())}}</span>
                             </span>
 
                     </a>
                 </li>
                 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="" class="menu-link">
+                    <a href="{{route('superadmin.user.create')}}" class="menu-link">
                             <i class="menu-bullet menu-bullet-line">
                                 <span></span>
                             </i>
                             <span class="menu-text">Add New Management User</span>
-                            <span class="menu-label">
-                                <span class="label label-rounded label-primary">6</span>
-                            </span>
 
                     </a>
                 </li>

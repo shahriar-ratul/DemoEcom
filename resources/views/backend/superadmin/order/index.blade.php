@@ -44,11 +44,36 @@
                     <td>{{++$key}}</td>
                     <td>{{$order->order_number}}</td>
                     <td>{{$order->user->username}}</td>
-                    <td>{{$order->status}}</td>
+                    <td>
+                        @if ($order->status == 'pending')
+                        <span class="label label-lg label-dark label-pill label-inline mr-2">pending</span>
+                        @elseif( $order->status == 'processing')
+                        <span class="label label-lg label-primary label-pill label-inline mr-2">processing</span>
+                        @elseif( $order->status == 'completed')
+                        <span class="label label-lg label-success label-pill label-inline mr-2">completed</span>
+                        @elseif( $order->status == 'declined')
+                        <span class="label label-lg label-warning label-pill label-inline mr-2">declined</span>
+
+                        @elseif( $order->status == 'canceled')
+                        <span class="label label-lg label-danger label-pill label-inline mr-2">canceled</span>
+                        @endif
+                    </td>
                     <td>{{$order->grand_total}}</td>
                     <td>{{$order->item_count}}</td>
-                    <td>{{$order->is_paid}}</td>
-                    <td>{{$order->payment_method}}</td>
+                    <td>
+                         @if($order->is_paid == 0)
+                         <span class="label label-lg label-danger label-pill label-inline mr-2">unpaid</span>
+                         @elseif($order->is_paid == 1)
+                         <span class="label label-lg label-dark label-pill label-inline mr-2">paid</span>
+                         @endif
+                    </td>
+                    <td>
+                        @if($order->payment_method == 'cash_on_delivery')
+                        <span class="label label-lg label-info label-pill label-inline mr-2">Cash on delivery</span>
+                        @else
+                        <span class="label label-lg label-primary label-pill label-inline mr-2">{{$order->payment_method}}</span>
+                        @endif
+                    </td>
                     <td>
                         @foreach ($order_items as $item)
                         <ul>

@@ -4,6 +4,7 @@
 /public/storage
 /public/images
 /public/banner
+/public/users
 /storage/*.key
 /vendor
 .env.backup

@@ -25,6 +25,14 @@ class OrderController extends Controller
 
     }
 
+    public function orderDetails($id){
+
+        $order = Order::find($id);
+        $order_items = OrderItem::latest()->get();
+
+        return view('frontend.pages.user.order_details',compact('order','order_items'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -88,10 +96,6 @@ class OrderController extends Controller
         $order->item_count = \Cart::session(auth()->id())->getContent()->count();
 
         $order->user_id = auth()->id();
-
-        if (request('payment_method') == 'paypal') {
-            $order->payment_method = 'paypal';
-        }
 
         $order->created_by = Auth::user()->id;
         $order->updated_by = Auth::user()->id;

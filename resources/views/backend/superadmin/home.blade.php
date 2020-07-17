@@ -1,7 +1,9 @@
 @extends('backend.superadmin.layouts.app')
 
 @push('css')
-
+<!--begin::Page Vendors Styles(used by this page)-->
+<link href="{{ asset('resource/backend/') }}/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
 @endpush
 
 @section('content')
@@ -9,7 +11,7 @@
 <!--begin::Container-->
 <div class="container">
     <!--begin::Dashboard-->
-    <!--Begin::Row-->
+    {{--  <!--Begin::Row-->
     <div class="row">
         <div class="col-xl-4">
             <!--begin::Stats Widget 22-->
@@ -60,7 +62,7 @@
             <!--end::Stats: Widget 24-->
         </div>
     </div>
-    <!--End::Row-->
+    <!--End::Row-->  --}}
     <!--Begin::Row-->
     <div class="row">
         <div class="col-xl-3">
@@ -69,18 +71,15 @@
                 <!--begin::Body-->
                 <div class="card-body">
                     <span class="svg-icon svg-icon-2x svg-icon-success">
-                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Fire.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <rect x="0" y="0" width="24" height="24" />
-                                <path d="M6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,12 C19,12.5522847 18.5522847,13 18,13 L6,13 C5.44771525,13 5,12.5522847 5,12 L5,3 C5,2.44771525 5.44771525,2 6,2 Z M7.5,5 C7.22385763,5 7,5.22385763 7,5.5 C7,5.77614237 7.22385763,6 7.5,6 L13.5,6 C13.7761424,6 14,5.77614237 14,5.5 C14,5.22385763 13.7761424,5 13.5,5 L7.5,5 Z M7.5,7 C7.22385763,7 7,7.22385763 7,7.5 C7,7.77614237 7.22385763,8 7.5,8 L10.5,8 C10.7761424,8 11,7.77614237 11,7.5 C11,7.22385763 10.7761424,7 10.5,7 L7.5,7 Z" fill="#000000" opacity="0.3" />
-                                <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z" fill="#000000" />
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path d="M14,7 C13.6666667,10.3333333 12.6666667,12.1167764 11,12.3503292 C11,12.3503292 12.5,6.5 10.5,3.5 C10.5,3.5 10.287918,6.71444735 8.14498739,10.5717225 C7.14049032,12.3798172 6,13.5986793 6,16 C6,19.428689 9.51143904,21.2006583 12.0057195,21.2006583 C14.5,21.2006583 18,20.0006172 18,15.8004732 C18,14.0733981 16.6666667,11.1399071 14,7 Z" fill="#000000"/>
                             </g>
-                        </svg>
-                        <!--end::Svg Icon-->
+                        </svg><!--end::Svg Icon--></span>
                     </span>
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">$5,209</span>
-                    <span class="font-weight-bold text-muted font-size-sm">SAP UI Progress</span>
+                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{count(App\Product::where('product_status','1')->get())}}</span>
+                    <span class="font-weight-bold text-muted font-size-sm">Total Product</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -102,8 +101,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">2,044</span>
-                    <span class="font-weight-bold text-muted font-size-sm">New Customers</span>
+                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{count(App\User::where('role_id','4')->get())}}</span>
+                    <span class="font-weight-bold text-muted font-size-sm">Total Customers</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -127,8 +126,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">$50,000</span>
-                    <span class="font-weight-bold text-muted font-size-sm">Milestone Reached</span>
+                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{App\Order::where('status','completed')->sum('grand_total')}}</span>
+                    <span class="font-weight-bold text-muted font-size-sm">Order Completed</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -150,8 +149,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">23,508</span>
-                    <span class="font-weight-bold text-muted font-size-sm">23,508</span>
+                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{count(App\Order::where('status','completed')->get())}}</span>
+                    <span class="font-weight-bold text-muted font-size-sm">Order Completed</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -177,13 +176,14 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">$5,209</span>
-                    <span class="font-weight-bold text-muted font-size-sm">SAP UI Progress</span>
+                    <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{count(App\Category::where('status','1')->get())}}</span>
+                    <span class="font-weight-bold text-muted font-size-sm">Category</span>
                 </div>
                 <!--end::Body-->
             </div>
             <!--end::Stats Widget 29-->
         </div>
+
         <div class="col-xl-3">
             <!--begin::Stats Widget 30-->
             <div class="card card-custom bg-info card-stretch gutter-b">
@@ -200,8 +200,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">2,044</span>
-                    <span class="font-weight-bold text-white font-size-sm">New Customers</span>
+                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{count(App\User::where('role_id','1')->get())}}</span>
+                    <span class="font-weight-bold text-white font-size-sm">Admin</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -225,8 +225,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">$50,000</span>
-                    <span class="font-weight-bold text-white font-size-sm">Milestone Reached</span>
+                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{App\Order::whereIn('status',['pending','processing'])->sum('grand_total')}}</span>
+                    <span class="font-weight-bold text-white font-size-sm">Order in progress/pending</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -248,8 +248,8 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 text-hover-primary d-block">23,508</span>
-                    <span class="font-weight-bold text-white font-size-sm">Support Tickets</span>
+                    <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 text-hover-primary d-block">{{count(App\Order::whereIn('status',['processing','pending'])->get())}}</span>
+                    <span class="font-weight-bold text-white font-size-sm">Order in Pending/Processing</span>
                 </div>
                 <!--end::Body-->
             </div>
@@ -260,118 +260,16 @@
 
     <!--begin::Row-->
     <div class="row">
-        <div class="col-lg-4">
-            <!--begin::Mixed Widget 14-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Header-->
-                <div class="card-header border-0 pt-5">
-                    <h3 class="card-title font-weight-bolder">Action Needed</h3>
-                    <div class="card-toolbar">
-                        <div class="dropdown dropdown-inline">
-                            <a href="#" class="btn btn-clean btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ki ki-bold-more-hor"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                                <!--begin::Navigation-->
-                                <ul class="navi navi-hover py-5">
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-drop"></i>
-                                            </span>
-                                            <span class="navi-text">New Group</span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-list-3"></i>
-                                            </span>
-                                            <span class="navi-text">Contacts</span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-rocket-1"></i>
-                                            </span>
-                                            <span class="navi-text">Groups</span>
-                                            <span class="navi-link-badge">
-                                                <span class="label label-light-primary label-inline font-weight-bold">new</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-bell-2"></i>
-                                            </span>
-                                            <span class="navi-text">Calls</span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-gear"></i>
-                                            </span>
-                                            <span class="navi-text">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-separator my-3"></li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-magnifier-tool"></i>
-                                            </span>
-                                            <span class="navi-text">Help</span>
-                                        </a>
-                                    </li>
-                                    <li class="navi-item">
-                                        <a href="#" class="navi-link">
-                                            <span class="navi-icon">
-                                                <i class="flaticon2-bell-2"></i>
-                                            </span>
-                                            <span class="navi-text">Privacy</span>
-                                            <span class="navi-link-badge">
-                                                <span class="label label-light-danger label-rounded font-weight-bold">5</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!--end::Navigation-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body d-flex flex-column">
-                    <div class="flex-grow-1">
-                        <div id="kt_mixed_widget_14_chart" style="height: 200px"></div>
-                    </div>
-                    <div class="pt-5">
-                        <p class="text-center font-weight-normal font-size-lg pb-7">Notes: Current sprint requires stakeholders
-                        <br />to approve newly amended policies</p>
-                        <a href="#" class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3">Generate Report</a>
-                    </div>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Mixed Widget 14-->
-        </div>
-        <div class="col-lg-8">
+
+        <div class="col-lg-12">
             <!--begin::Advance Table Widget 4-->
             <div class="card card-custom card-stretch gutter-b">
                 <!--begin::Header-->
                 <div class="card-header border-0 py-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label font-weight-bolder text-dark">Agents Stats</span>
-                        <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                        <span class="card-label font-weight-bolder text-dark"></span>
+
                     </h3>
-                    <div class="card-toolbar">
-                        <a href="#" class="btn btn-info font-weight-bolder font-size-sm mr-3">New Report</a>
-                        <a href="#" class="btn btn-danger font-weight-bolder font-size-sm">Create</a>
-                    </div>
                 </div>
                 <!--end::Header-->
                 <!--begin::Body-->
@@ -379,156 +277,80 @@
                     <div class="tab-content">
                         <!--begin::Table-->
                         <div class="table-responsive">
-                            <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable3">
                                 <thead>
-                                    <tr class="text-left text-uppercase">
-                                        <th style="min-width: 250px" class="pl-7">
-                                            <span class="text-dark-75">products</span>
-                                        </th>
-                                        <th style="min-width: 100px">earnings</th>
-                                        <th style="min-width: 100px">comission</th>
-                                        <th style="min-width: 100px">company</th>
-                                        <th style="min-width: 130px">rating</th>
-                                        <th style="min-width: 80px"></th>
+                                    <tr>
+                                        <th>Serial</th>
+                                        <th>Order No</th>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                        <th>Grand Total</th>
+                                        <th>Items</th>
+                                        <th>Paid</th>
+                                        <th>Payment Method</th>
+                                        <th>items</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($orders as $key=>$order)
                                     <tr>
-                                        <td class="pl-0 py-8">
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-50 symbol-light mr-4">
-                                                    <span class="symbol-label">
-                                                        <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Brad Simmons</a>
-                                                    <span class="text-muted font-weight-bold d-block">HTML, JS, ReactJS</span>
-                                                </div>
-                                            </div>
+                                        <td>{{++$key}}</td>
+                                        <td>{{$order->order_number}}</td>
+                                        <td>{{$order->user->username}}</td>
+                                        <td>@if ($order->status == 'pending')
+                                            <span class="label label-lg label-dark label-pill label-inline mr-2">pending</span>
+                                            @elseif( $order->status == 'processing')
+                                            <span class="label label-lg label-primary label-pill label-inline mr-2">processing</span>
+                                            @elseif( $order->status == 'completed')
+                                            <span class="label label-lg label-success label-pill label-inline mr-2">completed</span>
+                                            @elseif( $order->status == 'declined')
+                                            <span class="label label-lg label-warning label-pill label-inline mr-2">declined</span>
+
+                                            @elseif( $order->status == 'canceled')
+                                            <span class="label label-lg label-danger label-pill label-inline mr-2">canceled</span>
+                                            @endif</td>
+                                        <td>{{$order->grand_total}}</td>
+                                        <td>{{$order->item_count}}</td>
+                                        <td>
+                                            @if($order->is_paid == 0)
+                                            <span class="label label-lg label-danger label-pill label-inline mr-2">unpaid</span>
+                                            @elseif($order->is_paid == 1)
+                                            <span class="label label-lg label-dark label-pill label-inline mr-2">paid</span>
+                                            @endif
+
+                                        </td>
+                                        <td>{{$order->payment_method}}</td>
+                                        <td>
+                                            @foreach ($order_items as $item)
+                                            <ul>
+                                                @if ($order->id == $item->order_id)
+                                                <li>
+                                                    {{$item->product->product_name}}-
+                                                    {{$item->price}}-
+                                                    {{$item->quantity}}
+                                                </li>
+                                                @endif
+                                            </ul>
+
+                                            @endforeach
                                         </td>
                                         <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
-                                            <span class="text-muted font-weight-bold">In Proccess</span>
+                                                <a class="btn btn-info" href="{{ route('superadmin.order.edit',$order->id) }}">
+                                                <i class="fas fa-edit"></i> Edit
+                                              </a>
+                                              <a class="btn btn-danger text-light" onclick="deleteTag({{ $order->id }})">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                              </a>
+                                              <form id="delete-form-{{ $order->id }}" action="{{ route('superadmin.order.destroy',$order->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
-                                            <span class="text-muted font-weight-bold">Paid</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Intertico</span>
-                                            <span class="text-muted font-weight-bold">Web, UI/UX Design</span>
-                                        </td>
-                                        <td>
-                                            <img src="assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
-                                            <span class="text-muted font-weight-bold d-block font-size-sm">Best Rated</span>
-                                        </td>
-                                        <td class="pr-0 text-right">
-                                            <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
-                                        </td>
+
                                     </tr>
-                                    <tr>
-                                        <td class="pl-0 py-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-50 symbol-light mr-4">
-                                                    <span class="symbol-label">
-                                                        <img src="assets/media/svg/avatars/018-girl-9.svg" class="h-75 align-self-end" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie Clarcson</a>
-                                                    <span class="text-muted font-weight-bold d-block">C#, ASP.NET, MS SQL</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$23,000,000</span>
-                                            <span class="text-muted font-weight-bold">Pending</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$1,600</span>
-                                            <span class="text-muted font-weight-bold">Rejected</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Agoda</span>
-                                            <span class="text-muted font-weight-bold">Houses &amp; Hotels</span>
-                                        </td>
-                                        <td>
-                                            <img src="assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
-                                            <span class="text-muted font-weight-bold d-block font-size-sm">Above Avarage</span>
-                                        </td>
-                                        <td class="pr-0 text-right">
-                                            <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pl-0 py-8">
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-50 symbol-light mr-4">
-                                                    <span class="symbol-label">
-                                                        <img src="assets/media/svg/avatars/047-girl-25.svg" class="h-75 align-self-end" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Lebron Wayde</a>
-                                                    <span class="text-muted font-weight-bold d-block">PHP, Laravel, VueJS</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$34,000,000</span>
-                                            <span class="text-muted font-weight-bold">Paid</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$6,700</span>
-                                            <span class="text-muted font-weight-bold">Paid</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">RoadGee</span>
-                                            <span class="text-muted font-weight-bold">Paid</span>
-                                        </td>
-                                        <td>
-                                            <img src="assets/media/logos/stars.png" alt="image" style="width: 5.5rem" />
-                                            <span class="text-muted font-weight-bold d-block font-size-sm">Best Rated</span>
-                                        </td>
-                                        <td class="pr-0 text-right">
-                                            <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pl-0 py-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-50 symbol-light mr-4">
-                                                    <span class="symbol-label">
-                                                        <img src="assets/media/svg/avatars/014-girl-7.svg" class="h-75 align-self-end" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Natali Trump</a>
-                                                    <span class="text-muted font-weight-bold d-block">Python, PostgreSQL, ReactJS</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-left pr-0">
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$2,600,000</span>
-                                            <span class="text-muted font-weight-bold">Paid</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$14,000</span>
-                                            <span class="text-muted font-weight-bold">Pending</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">The Hill</span>
-                                            <span class="text-muted font-weight-bold">Insurance</span>
-                                        </td>
-                                        <td>
-                                            <img src="assets/media/logos/stars.png" style="width: 5.5rem" alt="" />
-                                            <span class="text-muted font-weight-bold d-block font-size-sm">Avarage</span>
-                                        </td>
-                                        <td class="pr-0 text-right">
-                                            <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm" style="width: 7rem">View Offer</a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -547,5 +369,44 @@
 @endsection
 
 @push('js')
+<!--begin::Page Vendors(used by this page)-->
+<script src="{{ asset('resource/backend/') }}/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.5"></script>
+<!--end::Page Vendors-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="{{ asset('resource/backend/') }}/assets/js/pages/crud/datatables/extensions/buttons.js?v=7.0.5"></script>
+<script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+
+<script type="text/javascript">
+    function deleteTag(id) {
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it! ',
+            cancelButtonText: 'No, cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false,
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                document.getElementById('delete-form-'+id).submit();
+            } else if (
+                // Read more about handling dismissals
+                result.dismiss === swal.DismissReason.cancel
+            ) {
+                swal(
+                    'Cancelled',
+                    'Your data is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
 
 @endpush

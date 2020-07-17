@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderItem;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,15 @@ class OrderController extends Controller
         $subcategories = SubCategory::where('status','1')->get();
 
         return view('frontend.pages.user.order',compact('orders','categories','subcategories'));
+    }
+    public function order($id){
+
+        $order = Order::find($id);
+        $order_items = OrderItem::latest()->get();
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+
+        return view('frontend.pages.user.order_details',compact('order','order_items','categories','subcategories'));
     }
 
     /**

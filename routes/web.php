@@ -84,6 +84,10 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
 //    order route
     Route::group(['prefix' => 'order'], function () {
         Route::resource('order', 'OrderController');
+        Route::get('/completed','OrderController@completed')->name('order.completed');
+        Route::get('/active','OrderController@active')->name('order.active');
+        Route::get('/rejected','OrderController@rejected')->name('order.rejected');
+        Route::get('/canceled','OrderController@canceled')->name('order.canceled');
     });
 
 //    banner route
@@ -94,6 +98,9 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
 //    add new user route
     Route::group(['prefix' => 'auth'], function () {
         Route::resource('user', 'UserController');
+        Route::get('/customer','UserController@customer')->name('user.customer');
+
+
 
     });
 
@@ -101,10 +108,14 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
     Route::group(['prefix' => 'system'], function () {
         Route::resource('setting', 'SettingController');
         Route::resource('profile', 'ProfileController');
+        Route::get('change-password', 'ProfileController@changePassword')->name('profile.changepassword');
+        Route::post('change-password', 'ProfileController@changePasswordstore')->name('profile.changepassword.store');
     });
 
 
 });
+
+Route::get('user/order/{id}', 'user\OrderController@order')->name('user.details.order');
 
 // Admin Routes
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['admin','auth'],'namespace'=>'admin'],function() {
@@ -119,7 +130,8 @@ Route::group(['as'=>'manager.','prefix'=>'manager','middleware'=>['manager','aut
 // User Routes
 Route::group(['as'=>'user.','prefix'=>'user','middleware'=>['auth'],'namespace'=>'user'],function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    Route::resource('profile', 'ProfileController') ;
-    Route::resource('order', 'OrderController') ;
-    Route::resource('wishlist', 'WishlistController') ;
+    Route::resource('profile', 'ProfileController');
+    Route::resource('order', 'OrderController');
+    Route::resource('wishlist', 'WishlistController');
 });
+

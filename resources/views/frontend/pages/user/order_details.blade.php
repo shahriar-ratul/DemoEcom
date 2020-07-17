@@ -1,26 +1,25 @@
 @extends('frontend.layouts.app')
-@section('title','Profile')
+@section('title','Order')
 @push('css')
-@endpush
 
+@endpush
 @section('content')
 
 <div class="tt-breadcrumb">
 	<div class="container">
 		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li>Account</li>
+			<li><a href="{{route('welcome')}}">Home</a></li>
+			<li>Order</li>
 		</ul>
 	</div>
 </div>
 <div id="tt-pageContent">
 	<div class="container-indent">
 		<div class="container container-fluid-custom-mobile-padding">
-			<h1 class="tt-title-subpages noborder">ACCOUNT</h1>
 			<div class="tt-shopping-layout">
-				<h2 class="tt-title-border">MY ACCOUNT</h2>
+				<h2 class="tt-title-border">Order</h2>
 				<div class="tt-wrapper">
-					<h3 class="tt-title">ORDER HISTORY</h3>
+					<h3 class="tt-title">Order Items : {{$order->item_count}}</h3>
 					<div class="tt-table-responsive">
 						<table class="tt-table-shop-01">
 							<thead>
@@ -34,81 +33,99 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><a href="shopping_order.html">#001</a></td>
-									<td>November 20. 2016</td>
-									<td>Processing</td>
-									<td>Processing</td>
-									<td>$40 fot 1 item</td>
+									<td>{{$order->order_number}}</td>
+									<td>{{$order->created_at}}</td>
+									<td>{{$order->is_paid}}</td>
+									<td>{{$order->status}}</td>
+									<td>{{$order->grand_total}}</td>
 								</tr>
-								<tr>
-									<td><a href="shopping_order.html">#001</a></td>
-									<td>November 20. 2016</td>
-									<td>Processing</td>
-									<td>Processing</td>
-									<td>$40 fot 1 item</td>
-								</tr>
-								<tr>
-									<td><a href="shopping_order.html">#001</a></td>
-									<td>November 20. 2016</td>
-									<td>Processing</td>
-									<td>Processing</td>
-									<td>$40 fot 1 item</td>
-								</tr>
-								<tr>
-									<td><a href="shopping_order.html">#001</a></td>
-									<td>November 20. 2016</td>
-									<td>Processing</td>
-									<td>Processing</td>
-									<td>$40 fot 1 item</td>
-								</tr>
+
 
 							</tbody>
 						</table>
 					</div>
-				</div>
+                </div>
+
+                <div class="tt-wrapper">
+					<h3 class="tt-title">Order Items : {{$order->item_count}}</h3>
+					<div class="tt-table-responsive">
+						<table class="tt-table-shop-01 ">
+							<thead class="text-bold text-primary">
+								<tr>
+									<th>Product Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+
+								</tr>
+							</thead>
+							<tbody class="text-bold text-dark">
+                                @foreach ($order_items as $item)
+								<tr>
+									<td>{{$item->product->product_name}}</td>
+									<td>{{$item->price}}</td>
+									<td>{{$item->quantity}}</td>
+
+                                </tr>
+                                @endforeach
+
+
+							</tbody>
+						</table>
+					</div>
+                </div>
+
 				<div class="tt-wrapper">
-					<h3 class="tt-title">ACCOUNT DETAILS</h3>
+					<h3 class="tt-title">Shipping Address</h3>
 					<div class="tt-table-responsive">
 						<table class="tt-table-shop-02">
 							<tbody>
 								<tr>
 									<td>NAME:</td>
-									<td>Lorem ipsum dolor sit AMET conse ctetur </td>
+									<td>{{$order->shipping_fullname}} </td>
+                                </tr>
+                                <tr>
+									<td>PHONE:</td>
+									<td>{{$order->shipping_phone}}</td>
 								</tr>
 								<tr>
 									<td>E-MAIL:</td>
-									<td>Ut enim ad minim veniam, quis nostrud </td>
+									<td>{{$order->shipping_email}}</td>
 								</tr>
 								<tr>
 									<td>ADDRESS:</td>
-									<td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
+									<td>{{$order->shipping_address}}</td>
 								</tr>
 								<tr>
-									<td>ADDRESS 2:</td>
-									<td>Commodo consequat. Duis aute irure dol</td>
+									<td>City:</td>
+									<td>{{$order->shipping_city}}</td>
+                                </tr>
+                                <tr>
+									<td>State:</td>
+									<td>{{$order->shipping_state}}</td>
 								</tr>
-								<tr>
-									<td>COUNTRY:</td>
-									<td>Lorem ipsum dolor sit amet conse ctetur</td>
-								</tr>
+
 								<tr>
 									<td>ZIP:</td>
-									<td>555</td>
+									<td>{{$order->shipping_zipcode}}</td>
 								</tr>
-								<tr>
-									<td>PHONE:</td>
-									<td>888888888</td>
-								</tr>
+
 							</tbody>
 						</table>
 					</div>
-					<a href="#" class="btn btn-border">VIEW ADDRESS 2</a>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
+
+
+
+
 @endsection
+
+
 @push('js')
+
 @endpush

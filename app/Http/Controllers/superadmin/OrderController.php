@@ -27,6 +27,41 @@ class OrderController extends Controller
         return view('backend.superadmin.order.index',compact('orders','order_items'));
     }
 
+    public function canceled()
+    {
+
+        $orders = Order::where('status','canceled')->latest()->get();
+        $order_items = OrderItem::latest()->get();
+
+        return view('backend.superadmin.order.index',compact('orders','order_items'));
+    }
+
+    public function completed()
+    {
+
+        $orders = Order::where('status','completed')->latest()->get();
+        $order_items = OrderItem::latest()->get();
+
+        return view('backend.superadmin.order.index',compact('orders','order_items'));
+    }
+    public function active()
+    {
+
+        $orders = Order::whereIn('status',['pending','pending'])->latest()->get();
+        $order_items = OrderItem::latest()->get();
+
+        return view('backend.superadmin.order.index',compact('orders','order_items'));
+    }
+    public function rejected()
+    {
+
+        $orders = Order::where('status','declined')->latest()->get();
+        $order_items = OrderItem::latest()->get();
+
+        return view('backend.superadmin.order.index',compact('orders','order_items'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -67,7 +102,9 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+
+        return view('backend.superadmin.order.edit',compact('order'));
     }
 
     /**
@@ -79,7 +116,18 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'status' => ['required'],
+            'is_paid' => ['required'],
+            ]);
+
+        $order = Order::find($id);
+        $order->status = $request->status;
+        $order->is_paid = $request->is_paid;
+        $order->save();
+
+        toastr()->success('Order Updated Successfuly');
+        return redirect()->route('superadmin.order.index');
     }
 
     /**
@@ -90,6 +138,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Order::find($id)->delete();
+        toastr()->success('Order Successfully Deleted.');
+        return redirect()->back();
     }
 }

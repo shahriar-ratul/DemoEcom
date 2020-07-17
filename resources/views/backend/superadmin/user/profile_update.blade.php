@@ -9,19 +9,20 @@
     <div class="card card-custom card-sticky" id="kt_page_sticky_card">
         <div class="card-header">
             <div class="card-title">
-                <h3 class="card-label">Add New Banner</h3>
+                <h3 class="card-label">Profile</h3>
                 <i class="mr-2"></i>
             </div>
             {{--  <!--begin::Form-->  --}}
 
             <div class="card-toolbar">
-                <form class="form" id="form" name="form" enctype="multipart/form-data" action="{{route('superadmin.user.store')}}" method="post">
+                <form class="form" id="form" name="form" enctype="multipart/form-data" action="{{route('superadmin.profile.update',$user->id)}}" method="post">
                     @csrf
-                    <a href="{{route('superadmin.user.index')}}" class="btn btn-light-primary font-weight-bolder mr-2">
+                    @method('PUT')
+                    <a href="{{route('superadmin.profile.index')}}" class="btn btn-light-primary font-weight-bolder mr-2">
                         <i class="ki ki-long-arrow-back icon-sm"></i>Back</a>
                     <div class="btn-group">
                         <button type="submit" class="btn btn-primary font-weight-bolder">
-                            <i class="ki ki-check icon-sm"></i>Save</button>
+                            <i class="ki ki-check icon-sm"></i>Update</button>
 
                     </div>
             </div>
@@ -41,7 +42,7 @@
                             <label class="col-3">First Name</label>
                             <div class="col-9">
                                 <input class="form-control border border-primary
-                                 @error('firstName') is-invalid @enderror" type="text" name="firstName" autocomplete="firstName" value="{{ old('firstName') }}" placeholder="Enter Your First Name" />
+                                 @error('firstName') is-invalid @enderror" type="text" name="firstName" autocomplete="firstName" value="{{$user->firstName }}" placeholder="Enter Your First Name" />
 
                                 @error('firstName')
                                 <span class="invalid-feedback" role="alert">
@@ -56,7 +57,7 @@
                             <div class="col-9">
                                 <input class="form-control border border-primary
                                 @error('lastName') is-invalid @enderror"
-                                type="text" name="lastName" autocomplete="lastName" value="{{ old('lastName') }}" placeholder="Enter Your Last Name"/>
+                                type="text" name="lastName" autocomplete="lastName" value="{{$user->lastName }}" placeholder="Enter Your Last Name"/>
 
                                 @error('lastName')
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +72,7 @@
                             <div class="col-9">
                                 <input class="form-control border border-primary
                                 @error('username') is-invalid @enderror"
-                                type="text" name="username" autocomplete="off" value="{{ old('username') }}" placeholder="Enter Your User Name"/>
+                                type="text" name="username" autocomplete="off" value="{{$user->username }}" placeholder="Enter Your User Name"/>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -85,8 +86,8 @@
                          <div class="form-group row">
                             <label class="col-3">Email</label>
                             <div class="col-9">
-                                <input class="form-control border border-primary @error('email') is-invalid @enderror"
-                                type="email" name="email" autocomplete="email" value="{{ old('email') }}" placeholder="Enter Your Email"/>
+                                <input class="form-control border border-danger @error('email') is-invalid @enderror"
+                                type="email" name="email" autocomplete="email" value="{{$user->email }}" placeholder="Enter Your Email" disabled/>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -97,51 +98,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-3">Password</label>
-                            <div class="col-9">
-                                <input class="form-control border border-primary @error('password') is-invalid @enderror" type="password" name="password" autocomplete="off" placeholder="Enter Your Password"/>
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-3">Confirm Password</label>
-                            <div class="col-9">
-                                <input class="form-control border border-primary @error('password') is-invalid @enderror" type="password" name="password_confirmation" autocomplete="off" placeholder="Enter Your Password Again"/>
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group row">
-                            <label class="col-3">Role</label>
-                            <div class="col-9">
-                                <select class="form-control select2" id="role" name="role_id" autocomplete="off">
-                                    <option selected disabled></option>
-                                    <option value="1">Admin</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        {{--  <div class="form-group row">
                             <label class="col-3">Image:</label>
                             <div class="col-9 ">
-                                <div class="image-input image-input-empty image-input-outline" id="kt_image_9" style="background-image: url({{asset('resource/backend')}}/assets/media/users/blank.png)">
+                                <div class="image-input image-input-empty image-input-outline" id="kt_image_9" style="background-image: url({{asset('users')}}/{{$user->image}})">
                                     <div class="image-input-wrapper"></div>
                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                         <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg"  />
                                     </label>
                                     <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
@@ -149,7 +112,7 @@
                                 </div>
                                 <span class="form-text text-muted">Default empty input with blank image</span>
                             </div>
-                        </div>  --}}
+                        </div>
 
 
 
@@ -172,20 +135,6 @@
             <!--begin::Page Scripts(used by this page)-->
             <script src="{{asset('resource/backend')}}/assets/js/pages/crud/file-upload/image-input.js"></script>
             <!--end::Page Scripts-->
-
-
-            <script >
-                $(document).ready(function(){
-                    // select role
-                    $('#role').select2({
-                        placeholder: "Select Role",
-                        // tags: true,
-                        allowClear: true,
-                        // tokenSeparators: [',', ' ']
-                    });
-                });
-
-            </script>
 
 
     @endpush

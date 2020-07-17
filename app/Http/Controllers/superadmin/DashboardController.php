@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\superadmin;
 
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\OrderItem;
 use Illuminate\Http\Request;
 
 
@@ -19,9 +21,10 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        // toastr()->success('Data has been saved successfully!');
-        // toastr()->info('Are you the 6 fingered man?');
-        return view('backend.superadmin.home');
+
+        $orders = Order::whereIn('status',['pending','processing'])->get();
+        $order_items = OrderItem::get();
+        return view('backend.superadmin.home',compact('orders','order_items'));
     }
 
     /**

@@ -58,20 +58,20 @@
                                         <h6><span class="badge badge-primary">processing</span></h6>
                                         @elseif( $item->status == 'completed')
                                         <h6><span class="badge badge-success">completed</span></h6>
-                                        @elseif( $item->status == 'decline')
-                                        <h6><span class="badge badge-warning">decline</span></h6>
+                                        @elseif( $item->status == 'declined')
+                                        <h6><span class="badge badge-warning">declined</span></h6>
 
-                                        @elseif( $item->status == 'cancel')
-                                        <h6><span class="badge badge-danger">cancel</span></h6>
+                                        @elseif( $item->status == 'canceled')
+                                        <h6><span class="badge badge-danger">canceled</span></h6>
                                         @endif
                                     </td>
 									<td>{{$item->item_count}}</td>
 									<td>{{$item->grand_total}}</td>
 									<td>
-                                        <a href="#" class="btn text-white">Edit</a>
+                                        <a href="{{route('user.details.order',$item->id)}}" class="btn text-white">Edit</a>
                                     </td>
                                     <td>
-                                        <a href="#" class="btn bg-info text-white">details</a>
+                                        <a href="{{route('user.details.order',$item->id)}}" class="btn bg-info text-white">details</a>
                                     </td>
                                 </tr>
 
