@@ -139,10 +139,13 @@
                 </button>
                 <div class="tt-dropdown-menu">
                     <div class="container">
-                        <form>
+                        <form action="{{route('product.search')}}" method="POST">
+                            @csrf
                             <div class="tt-col">
-                                <input type="text" class="tt-search-input" placeholder="Search Products...">
+                                <input type="text" class="tt-search-input" placeholder="Search Products..." id="search" name="search" autocomplete="off">
                                 <button class="tt-btn-search" type="submit"></button>
+
+
                             </div>
                             <div class="tt-col">
                                 <button class="tt-btn-close icon-g-80"></button>
@@ -150,23 +153,11 @@
                             <div class="tt-info-text">
                                 What are you Looking for?
                             </div>
-                            <div class="search-results">
-                                <ul>
-                                    <li>
-                                        <a href="product.html">
-                                            <div class="thumbnail"><img src="images/loader.svg" data-src="images/product/product-03.jpg" alt=""></div>
-                                            <div class="tt-description">
-                                                <div class="tt-title">Flared Shift Bag</div>
-                                                <div class="tt-price">
-                                                    <span class="new-price">$14</span>
-                                                    <span class="old-price">$24</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <button type="button" class="tt-view-all">View all products</button>
+                            <div id="searchlist">
+
                             </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -209,7 +200,7 @@
                                 @endif
                             <li><a href="{{route('user.profile.index')}}"><i class="icon-f-94"></i>My profile</a></li>
                             <li><a href="{{route('user.order.index')}}"><i class="icon-f-94"></i>My Order list</a></li>
-                            <li><a href="{{route('login')}}"><i class="icon-f-94"></i>My Wish list</a></li>
+                            <li><a href="{{route('user.changepassword')}}"><i class="icon-f-94"></i>Change Password</a></li>
                             <li><a href="{{route('logout')}}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i class="icon-f-94"></i>Logout</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

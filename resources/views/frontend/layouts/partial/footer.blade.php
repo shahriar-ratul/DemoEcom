@@ -162,7 +162,6 @@
 <script src="{{ asset('resource/frontend/') }}/external/slick/slick.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/panelmenu/panelmenu.js"></script>
-<script src="{{ asset('resource/frontend/') }}/external/instafeed/instafeed.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/countdown/jquery.plugin.min.js"></script>
@@ -173,6 +172,8 @@
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.form.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.validate.min.js"></script>
 <script src="{{ asset('resource/frontend/') }}/external/form/jquery.form-init.js"></script>
+
+
 
 @stack('js')
 @toastr_js
@@ -189,3 +190,30 @@
     @endif
 </script>
 
+<script>
+    $(document).ready(function(){
+
+     $('#search').keyup(function(){
+            var query = $(this).val();
+            if(query != '')
+            {
+             var _token = $('input[name="_token"]').val();
+             $.ajax({
+              url:"{{ route('autocomplete.fetch') }}",
+              method:"POST",
+              data:{query:query, _token:_token},
+              success:function(data){
+               $('#search').fadeIn();
+                        $('#searchlist').html(data);
+              }
+             });
+            }
+        });
+
+        $(document).on('click', 'li', function(){
+            $('#search').val($(this).text());
+            $('#searchlist').fadeOut();
+        });
+
+    });
+    </script>

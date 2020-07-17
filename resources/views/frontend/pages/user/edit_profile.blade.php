@@ -8,7 +8,7 @@
 <div class="tt-breadcrumb">
 	<div class="container">
 		<ul>
-			<li><a href="index.html">Home</a></li>
+			<li><a href="{{route('welcome')}}">Home</a></li>
 			<li>Account</li>
 		</ul>
 	</div>

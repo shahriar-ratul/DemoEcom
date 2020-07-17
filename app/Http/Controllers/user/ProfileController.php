@@ -5,7 +5,10 @@ namespace App\Http\Controllers\user;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\SubCategory;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -24,6 +27,32 @@ class ProfileController extends Controller
         $subcategories = SubCategory::where('status','1')->get();
 
         return view('frontend.pages.user.profile',compact('categories','subcategories'));
+    }
+    public function changepassword()
+    {
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+
+        return view('frontend.pages.user.change_password',compact('categories','subcategories'));
+    }
+    public function changepasswordstore(Request $request)
+    {
+        $this->validate($request,[
+            'current_password' => ['required'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+
+            ]);
+
+        if (Hash::check($request->current_password, Auth::user()->password)) {
+            $user = User::find(Auth::user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            toastr()->success('Password Changed Successfully');
+            return  redirect()->route('user.profile.index');
+        }else{
+            toastr()->error('Current Password Does not Match');
+            return redirect()->back();
+        }
     }
 
     /**

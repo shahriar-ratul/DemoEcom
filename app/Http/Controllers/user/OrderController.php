@@ -79,7 +79,11 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+
+        return view('frontend.pages.user.edit_order',compact('order','categories','subcategories'));
     }
 
     /**
@@ -91,7 +95,21 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        $order = Order::find($id);
+        if($order->status != 'completed'){
+            $order->status = $request->status;
+            $order->save();
+            toastr()->success('Order Has been canceled');
+            return redirect()->route('user.order.index');
+        }else{
+            toastr()->warning('Order cannot cancel. It has been completed');
+            return redirect()->route('user.order.index');
+        }
+
+
+
     }
 
     /**

@@ -166,4 +166,34 @@ class WelcomeController extends Controller
     {
         //
     }
+
+    function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = Product::where('product_name', 'LIKE', "%{$query}%")
+        ->limit(8)->get();
+      $output = '<ul class="tt-list-row">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li ><a href="'.route('product.show.details',$row->id).'">'.$row->product_name.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
+
+    public function search_product(Request $request){
+
+
+        $products =Product::where('product_name', 'like', '%'.$request->search.'%')->where('product_status','1')->paginate(15);
+        $count = count(Product::where('product_name', 'like', '%'.$request->search.'%')->where('product_status','1')->get());
+        $categories =Category::where('status','1')->get();
+        $subcategories = SubCategory::where('status','1')->get();
+        return view('frontend.pages.product.products',compact('categories','subcategories','products','count'));
+
+    }
 }

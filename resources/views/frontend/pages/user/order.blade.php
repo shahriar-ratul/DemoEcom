@@ -68,7 +68,9 @@
 									<td>{{$item->item_count}}</td>
 									<td>{{$item->grand_total}}</td>
 									<td>
-                                        <a href="{{route('user.details.order',$item->id)}}" class="btn text-white">Edit</a>
+                                        @if($item->status != 'completed')
+                                        <a href="{{route('user.order.edit',$item->id)}}" class="btn text-white">Edit</a>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{route('user.details.order',$item->id)}}" class="btn bg-info text-white">details</a>

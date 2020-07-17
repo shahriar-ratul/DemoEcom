@@ -116,6 +116,8 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','middleware'=>['superad
 });
 
 Route::get('user/order/{id}', 'user\OrderController@order')->name('user.details.order');
+Route::get('user/change-password', 'user\ProfileController@changepassword')->name('user.changepassword');
+Route::post('user/change-password', 'user\ProfileController@changepasswordstore')->name('user.changepassword.store');
 
 // Admin Routes
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['admin','auth'],'namespace'=>'admin'],function() {
@@ -134,4 +136,9 @@ Route::group(['as'=>'user.','prefix'=>'user','middleware'=>['auth'],'namespace'=
     Route::resource('order', 'OrderController');
     Route::resource('wishlist', 'WishlistController');
 });
+
+// search
+
+Route::post('/search-product','WelcomeController@search_product')->name('product.search');
+Route::post('/autocomplete/fetch', 'WelcomeController@fetch')->name('autocomplete.fetch');
 

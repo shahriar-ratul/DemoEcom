@@ -45,7 +45,7 @@
                                 <input class="form-control border border-primary
                                  @error('current_password') is-invalid @enderror" type="password" name="current_password" autocomplete="off" placeholder="Enter Your Current Password" />
 
-                                @error('firstName')
+                                @error('current_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
