@@ -52,7 +52,7 @@
                 <div class="tt-product thumbprod-center product-nohover">
                     <div class="tt-image-box">
                         <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
-                        <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+
 
                         <a href="{{route('product.show.details',$product->id)}}">
                             <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image}}" alt=""></span>
@@ -127,7 +127,7 @@
                 <div class="tt-product thumbprod-center product-nohover">
                     <div class="tt-image-box">
                         <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
-                        <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+
 
                         <a href="{{route('product.show.details',$product->id)}}">
                             <span class="tt-img"><img src="{{ asset('resource/frontend/') }}/images/loader.svg" data-src="{{ asset('images') }}/{{$product->product_image}}" alt=""></span>

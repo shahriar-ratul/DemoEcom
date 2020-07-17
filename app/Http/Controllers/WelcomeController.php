@@ -80,7 +80,9 @@ class WelcomeController extends Controller
         $categories =Category::where('status','1')->get();
         $subcategories = SubCategory::where('status','1')->get();
 
-        return view('frontend.pages.product.single_product',compact('categories','subcategories','product'));
+        $products = Product::where('id', '!=', $id)->paginate(4);
+
+        return view('frontend.pages.product.single_product',compact('categories','subcategories','product','products'));
     }
     public function show_product_by_category($cat_id){
 

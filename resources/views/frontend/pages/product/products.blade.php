@@ -72,8 +72,8 @@
                                     <div class="tt-product thumbprod-center">
                                         <div class="tt-image-box">
                                             <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
-                                            <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
-                                            <a href="#" class="tt-btn-compare" data-tooltip="Add to Compare" data-tposition="left"></a>
+
+
                                             <a href="{{route('product.show.details',$product->id)}}">
                                                 <span class="tt-img"><img src="{{asset('resource/frontend')}}/images/loader.svg" data-src="{{asset('images')}}/{{$product->product_image}}" alt=""></span>
 {{--                                                <span class="tt-img-roll-over"><img src="{{asset('resource/frontend')}}/images/loader.svg" data-src="{{asset('images')}}/{{$product->product_image}}" alt=""></span>--}}

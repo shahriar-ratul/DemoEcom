@@ -63,11 +63,11 @@ class ProductController extends Controller
             'product_status' => ['required'],
             'product_description' => ['required'],
             'product_video_link' => ['required'],
-            'image_1' => 'image|mimes:jpeg,png,jpg|max:8192',
-            'image_2' => 'image|mimes:jpeg,png,jpg|max:8192',
-            'image_3' => 'image|mimes:jpeg,png,jpg|max:8192',
-            'image_4' => 'image|mimes:jpeg,png,jpg|max:8192',
-            'image_5' => 'image|mimes:jpeg,png,jpg|max:8192',
+            'image_1' => 'required|image|mimes:jpeg,png,jpg|max:8192',
+            'image_2' => 'required|image|mimes:jpeg,png,jpg|max:8192',
+            'image_3' => 'required|image|mimes:jpeg,png,jpg|max:8192',
+            'image_4' => 'required|image|mimes:jpeg,png,jpg|max:8192',
+            'image_5' => 'required|image|mimes:jpeg,png,jpg|max:8192',
 
         ]);
 
