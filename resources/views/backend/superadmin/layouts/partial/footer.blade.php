@@ -148,6 +148,7 @@
         <!--end::Scrolltop-->
 
 
+        {{-- <script>var HOST_URL = "https://ecom.shahriarratul.com/";</script> --}}
         <script>var HOST_URL = "https://demoecom.dev/";</script>
 
 		<!--begin::Global Config(global config for global JS scripts)-->

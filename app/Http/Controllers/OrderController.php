@@ -63,65 +63,68 @@ class OrderController extends Controller
             'payment_method' => 'required',
         ]);
 
-        $order = new Order();
+        if(\Cart::session(auth()->id())->getContent()->count() > 0){
 
-        $order->order_number = uniqid('OrderNumber-');
+            $order = new Order();
 
-        $order->shipping_fullname = $request->input('shipping_fullname');
-        $order->shipping_address = $request->input('shipping_address');
-        $order->shipping_city = $request->input('shipping_city');
-        $order->shipping_state = $request->input('shipping_state');
-        $order->shipping_phone = $request->input('shipping_phone');
-        $order->shipping_zipcode = $request->input('shipping_zipcode');
-        $order->shipping_email = $request->input('shipping_email');
+            $order->order_number = uniqid('OrderNumber-');
 
-        if(!$request->has('billing_fullname')) {
-            $order->billing_fullname = $request->input('shipping_fullname');
-            $order->billing_state = $request->input('shipping_state');
-            $order->billing_city = $request->input('shipping_city');
-            $order->billing_address = $request->input('shipping_address');
-            $order->billing_phone = $request->input('shipping_phone');
-            $order->billing_zipcode = $request->input('shipping_zipcode');
-            $order->billing_email = $request->input('shipping_email');
-        }else {
-            $order->billing_fullname = $request->input('billing_fullname');
-            $order->billing_state = $request->input('billing_state');
-            $order->billing_city = $request->input('billing_city');
-            $order->billing_address = $request->input('billing_address');
-            $order->billing_phone = $request->input('billing_phone');
-            $order->billing_zipcode = $request->input('billing_zipcode');
-            $order->billing_email = $request->input('billing_email');
+            $order->shipping_fullname = $request->input('shipping_fullname');
+            $order->shipping_address = $request->input('shipping_address');
+            $order->shipping_city = $request->input('shipping_city');
+            $order->shipping_state = $request->input('shipping_state');
+            $order->shipping_phone = $request->input('shipping_phone');
+            $order->shipping_zipcode = $request->input('shipping_zipcode');
+            $order->shipping_email = $request->input('shipping_email');
+
+            if(!$request->has('billing_fullname')) {
+                $order->billing_fullname = $request->input('shipping_fullname');
+                $order->billing_state = $request->input('shipping_state');
+                $order->billing_city = $request->input('shipping_city');
+                $order->billing_address = $request->input('shipping_address');
+                $order->billing_phone = $request->input('shipping_phone');
+                $order->billing_zipcode = $request->input('shipping_zipcode');
+                $order->billing_email = $request->input('shipping_email');
+            }else {
+                $order->billing_fullname = $request->input('billing_fullname');
+                $order->billing_state = $request->input('billing_state');
+                $order->billing_city = $request->input('billing_city');
+                $order->billing_address = $request->input('billing_address');
+                $order->billing_phone = $request->input('billing_phone');
+                $order->billing_zipcode = $request->input('billing_zipcode');
+                $order->billing_email = $request->input('billing_email');
+            }
+
+
+            $order->grand_total = \Cart::session(auth()->id())->getTotal();
+            $order->item_count = \Cart::session(auth()->id())->getContent()->count();
+
+            $order->user_id = auth()->id();
+
+            $order->created_by = Auth::user()->id;
+            $order->updated_by = Auth::user()->id;
+            $order->save();
+
+            //save order items
+
+            $cartItems = \Cart::session(auth()->id())->getContent();
+
+            foreach($cartItems as $item) {
+                $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+            }
+
+            $order_id = $order->id;
+
+            //empty cart
+            \Cart::session(auth()->id())->clear();
+            //send email to customer
+            Mail::to($order->user->email)->send(new OrderMail($order));
+
+            return redirect()->route('complete.order',[$order_id]);
+        }else{
+            toastr()->warning('Please comfirm your order again');
+            return redirect()->back();
         }
-
-
-        $order->grand_total = \Cart::session(auth()->id())->getTotal();
-        $order->item_count = \Cart::session(auth()->id())->getContent()->count();
-
-        $order->user_id = auth()->id();
-
-        $order->created_by = Auth::user()->id;
-        $order->updated_by = Auth::user()->id;
-        $order->save();
-
-        //save order items
-
-        $cartItems = \Cart::session(auth()->id())->getContent();
-
-        foreach($cartItems as $item) {
-            $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-        }
-
-         $order_id = $order->id;
-
-
-        //empty cart
-        \Cart::session(auth()->id())->clear();
-        //send email to customer
-        Mail::to($order->user->email)->send(new OrderMail($order));
-
-
-
-        return redirect()->route('complete.order',[$order_id]);
 
     }
 

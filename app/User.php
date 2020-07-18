@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\UserRegisteredEvent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,4 +44,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    protected $dispatchesEvents = [
+        'created' => UserRegisteredEvent::class,
+    ];
 }
