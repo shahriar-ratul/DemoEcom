@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Mail\OrderMail;
 use App\Order;
 use App\OrderItem;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -115,6 +117,8 @@ class OrderController extends Controller
         //empty cart
         \Cart::session(auth()->id())->clear();
         //send email to customer
+        Mail::to($order->user->email)->send(new OrderMail($order));
+
 
 
         return redirect()->route('complete.order',[$order_id]);
