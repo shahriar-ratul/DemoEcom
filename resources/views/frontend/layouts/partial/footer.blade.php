@@ -11,9 +11,10 @@
 									BE IN TOUCH WITH US:
 								</h4>
 								<div class="tt-collapse-content">
-									<form id="newsletterform" class="form-inline form-default" method="post" novalidate="novalidate" action="#">
+									<form class="form-inline form-default" method="post"  action="{{route('subscribe.store')}}">
+                                        @csrf
 										<div class="form-group">
-											<input type="text" name="email" class="form-control" placeholder="Enter your e-mail">
+											<input type="text" name="email" class="form-control" placeholder="Enter your e-mail" required>
 											<button type="submit" class="btn">JOIN US</button>
 										</div>
 									</form>

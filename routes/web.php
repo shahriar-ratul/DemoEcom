@@ -142,3 +142,7 @@ Route::group(['as'=>'user.','prefix'=>'user','middleware'=>['auth'],'namespace'=
 Route::post('/search-product','WelcomeController@search_product')->name('product.search');
 Route::post('/autocomplete/fetch', 'WelcomeController@fetch')->name('autocomplete.fetch');
 
+
+Route::post('/subscribe','SubscribeController@store')->name('subscribe.store');
+
+

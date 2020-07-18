@@ -127,10 +127,6 @@
 </div>
 <!-- end::User Panel-->
 
-
-
-
-
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop">
 			<span class="svg-icon">
